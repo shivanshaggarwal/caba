@@ -39,8 +39,8 @@ const ImageInputs = () => {
             .getUserMedia({ video: true }) // Request access to the camera
             .then((stream) => {
               // Display the camera stream in a video element
-              cameraStream.style.display = 'block';
               cameraStream.srcObject = stream;
+              cameraStream.style.display = 'block';
             })
             .catch((error) => {
               console.error('Error accessing the camera:', error);
@@ -51,17 +51,25 @@ const ImageInputs = () => {
       }  
 
     return (
-        <div className="offset-3 col-6 photocontainer p-0" onMouseEnter={(e)=>e.target.style.outline="none"}>
-            <div className="col-12 bg-light" >
-                <div 
-                    className="text-start p-3 d-flex justify-content-between fs-4 align-items-center fw-lighter" 
-                    htmlFor="fileName" 
-                    onClick={() => document.getElementById('fileName').click()} 
-                    onMouseEnter={(e)=>e.target.style.outline="1px dashed grey"} 
-                    onMouseLeave={(e)=>e.target.style.outline="none"}>
-                        Choose File
-                    <div >
+        <div className="offset-2 col-7 photocontainer p-0" onMouseEnter={(e)=>e.target.style.outline="none"}>
+            <div className="col-12 bg-light rounded-2" >
+                <div className='row '>
+                    <div 
+                        className="col-12 col-sm-6 p-3 fs-6 fw-lighter" 
+                        htmlFor="fileName" 
+                        onClick={() => document.getElementById('fileName').click()} 
+                        onMouseEnter={(e)=>e.target.style.outline="1px dashed grey"} 
+                        onMouseLeave={(e)=>e.target.style.outline="none"}>
+                            Choose File
+                        <input 
+                            type="file" name="" id="fileName" 
+                            className='d-none' onChange={handleFileChange} 
+                            accept=".jpg, .jpeg, .png"
+                        />
+                    </div>
+                    <div className='col-12 col-sm-6'>
                         <span 
+                            onClick={() => document.getElementById('fileName').click()}
                             className="material-symbols-outlined m-2 bg-secondary-subtle p-2 rounded-circle outline-none" 
                             onMouseEnter={(e)=>e.target.style.cursor="pointer"}
                         >
@@ -74,12 +82,8 @@ const ImageInputs = () => {
                         >
                             photo_camera 
                         </span>
+                        
                     </div>
-                    <input 
-                        type="file" name="" id="fileName" 
-                        style={{ display: 'none' }} onChange={handleFileChange} 
-                        accept=".jpg, .jpeg, .png"
-                    />
                 </div>
                 {selectedFile && (
                     <div className="preview-container text-start p-0 m-0 fw-lighter">
@@ -88,7 +92,7 @@ const ImageInputs = () => {
                     </div>
                 )}
             </div>
-            <p className='my-0 text-start fw-lighter ' style={{fontSize: "15px"}}><i>Passport Size Photo in JPG format - JPG/PNG format less than 5 MB</i></p> 
+            <p className='my-0 text-start fw-lighter fs-6'><i>Passport Size Photo in JPG format - JPG/PNG format less than 5 MB</i></p> 
         </div>  
     );
 };

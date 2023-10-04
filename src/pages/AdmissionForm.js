@@ -12,34 +12,36 @@ function AdmissionForm() {
                         <div className="card-title text-start col-3 text-primary "><h3>Personal Details</h3></div><hr />
                     </div>
 
-                    <div className="row photo">
+                    <div className="row photo mb-4">
                         <label htmlFor="photo" className="text-start col-3"><b>Your Photo</b></label>
                         <ImageInputs />
 
                     </div>
                     <div className="row fullname">
-                        <label htmlFor="fullName" className="text-start col-3"><b>Full Name <span className='text-danger'>*</span></b></label>
-                        <div className="offset-3 col-6">
-                            <div className="row gx-3">
-                                <div class="col-sm-2 p-0 ">
-                                    <select id="inputState" className="form-select " aria-label=''>
-                                        <option selected>-Select-</option>
+                        <label htmlFor="fullName" className="text-start col-3">
+                            <b>Full Name <span className='text-danger'>*</span></b>
+                            </label>
+                        <div className="offset-2 col-7 p-0">
+                            <div className="row gy-2">
+                                <div className="col-6 col-md-2 p-0 ">
+                                    <select id="inputState" className="form-select p-1" aria-label=''>
+                                        <option selected className='fs-6 fw-lighter'>-Select-</option>
                                         <option>Mr.</option>
                                         <option>Ms.</option>
                                         <option>Mrs.</option>
                                     </select>
                                 </div>
-                                <div class="col-sm-3 ">
-                                    <input type="text" class="form-control" id="specificSizeInputName" />
-                                    <label for="specificSizeInputName">First</label>
+                                <div className="col-12 col-md-3 p-0">
+                                    <input type="text" className="form-control" id="specificSizeInputName" />
+                                    <label htmlFor="specificSizeInputName">First</label>
                                 </div>
-                                <div class="col-sm-3 ">
-                                    <input type="text" class="form-control" id="specificSizeInputName" />
-                                    <label for="specificSizeInputName">Middle</label>
+                                <div className="col-12 col-md-3 p-0">
+                                    <input type="text" className="form-control" id="specificSizeInputName" />
+                                    <label htmlFor="specificSizeInputName">Middle</label>
                                 </div>
-                                <div class="col-sm-4">
-                                    <input type="text" class="form-control" id="specificSizeInputName" />
-                                    <label for="specificSizeInputName">Last</label>
+                                <div className="col-12 col-md-4 p-0">
+                                    <input type="text" className="form-control" id="specificSizeInputName" />
+                                    <label htmlFor="specificSizeInputName">Last</label>
                                 </div>
                             </div>
                         </div>
