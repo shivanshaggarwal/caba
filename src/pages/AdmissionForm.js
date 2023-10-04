@@ -15,7 +15,7 @@ function AdmissionForm() {
                     <div className="row photo mb-4">
                         <label htmlFor="photo" className="text-start col-3"><b>Your Photo</b></label>
                         <ImageInputs />
-
+                        {/*  sdfsfs */}
                     </div>
                     <div className="row fullname">
                         <label htmlFor="fullName" className="text-start col-3">
