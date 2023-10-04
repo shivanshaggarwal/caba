@@ -53,13 +53,13 @@ const ImageInputs = () => {
     return (
         <div className="offset-2 col-7 photocontainer p-0" onMouseEnter={(e)=>e.target.style.outline="none"}>
             <div className="col-12 bg-light rounded-2" >
-                <div className='row '>
+                <div className='row ' onMouseEnter={(e)=>e.target.style.outline="1px dashed grey"} 
+                        onMouseLeave={(e)=>e.target.style.outline="none"}>
                     <div 
                         className="col-12 col-sm-6 p-3 fs-6 fw-lighter" 
                         htmlFor="fileName" 
                         onClick={() => document.getElementById('fileName').click()} 
-                        onMouseEnter={(e)=>e.target.style.outline="1px dashed grey"} 
-                        onMouseLeave={(e)=>e.target.style.outline="none"}>
+                    >
                             Choose File
                         <input 
                             type="file" name="" id="fileName" 
