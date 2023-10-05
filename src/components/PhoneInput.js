@@ -26,7 +26,7 @@ const PhoneInput = (props) => {
                         </li>
                     ))}
                 </ul>
-                <input type="text" className="form-control" aria-label="Text input with segmented dropdown button" />
+                <input type="number" className="form-control" aria-label="Text input with segmented dropdown button" />
             </div>
             <p className='my-0 text-start fw-lighter fs-6 fst-italic '>{props.info}</p>         
         </div>
