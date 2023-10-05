@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import {useForm} from 'react-hook-form'
 
 
-const ImageInputs = () => {
+const ImageInputs = (props) => {
 
     const [selectedFile, setSelectedFile] = useState(null);
 
@@ -53,7 +53,7 @@ const ImageInputs = () => {
     return (
         <div className="offset-2 col-7 photocontainer p-0" onMouseEnter={(e)=>e.target.style.outline="none"}>
             <div className="col-12 bg-light rounded-2" >
-                <div className='row ' onMouseEnter={(e)=>e.target.style.outline="1px dashed grey"} 
+                <div className='row m-0' onMouseEnter={(e)=>e.target.style.outline="1px dashed grey"} 
                         onMouseLeave={(e)=>e.target.style.outline="none"}>
                     <div 
                         className="col-12 col-sm-6 p-3 fs-6 fw-lighter" 
@@ -92,7 +92,7 @@ const ImageInputs = () => {
                     </div>
                 )}
             </div>
-            <p className='my-0 text-start fw-lighter fs-6'><i>Passport Size Photo in JPG format - JPG/PNG format less than 5 MB</i></p> 
+            <p className='my-0 text-start fw-lighter fs-6 fst-italic'>{props.info}</p> 
         </div>  
     );
 };
