@@ -121,6 +121,91 @@ function AdmissionForm() {
 
                         
                     </div>
+
+                    <div className="row courseDetails">
+                        <div className="card-title text-start col-3 text-danger ">
+                            <h4>Course Details</h4>
+                        </div>
+                        <hr />
+                        <div className="row email m-0 mb-4">
+                            <label htmlFor="photo" className="text-start col-3"><b>Roll Number</b></label>
+                            <div className="offset-2 col-4 p-0">
+                                <input type="text" className="form-control" id="specificSizeInputName" placeholder='Official Use Only'/>
+                            </div>
+                        </div>
+                        <div className="row date m-0 mb-4">
+                            <label htmlFor="photo" className="text-start col-3"><b>Date Of Joining</b></label>
+                            <div className="offset-2 col-4 p-0">
+                                <input type="text" className="form-control" id="specificSizeInputName" placeholder='Official Use Only'/>
+                            </div>
+                        </div>
+                        <div className="row trainingType m-0 mb-4">
+                            <label htmlFor="photo" className="text-start col-3"><b>Training Type</b></label>
+                            <div className="offset-2 col-4 p-0">
+                                <select id="inputState" className="form-select p-1" aria-label=''>
+                                        <option selected className='fs-6 fw-lighter'>-Select-</option>
+                                        <option>Online</option>
+                                        <option>Offline</option>
+                                </select>
+                                <p className='my-0 text-start fw-lighter fs-6 fst-italic'>Type of Training</p>
+                            </div>
+                        </div>
+                        
+                        <div className="row courseOpted m-0 mb-4">
+                            <label htmlFor="photo" className="text-start col-3">
+                                <b>Course Opted</b>
+                            </label>
+                            <div className="offset-2 col-4 p-0">
+                                <select id="inputState" className="form-select p-1" aria-label=''>
+                                        <option selected className='fs-6 fw-lighter'>-Select-</option>
+                                        <option>6 Months Graphic Design</option>
+                                        <option>6 Months Video Editing</option>
+                                        <option>8 Months Web Designing</option>
+                                        <option>8 Months Web Development</option>
+                                        <option>10 Months Motion Graphics</option>
+                                        <option>12 Months Digital Marketing</option>
+                                        <option>12 Months Web Design & Development</option>
+                                        <option>12 Months Motion Graphics & Social Media</option>
+                                        <option>14 Months Motion Graphics & Web Design</option>
+                                        <option>14 Months Motion Graphics & SEO</option>
+                                        <option>18 Months Motion Graphics</option>
+                                        <option>24 Months Full Advanced Course in Digital Media</option>
+                                        <option>Customised</option>
+                                        <option>Other</option>
+                                </select>
+                                <p className='my-0 text-start fw-lighter fs-6 fst-italic'>Select the Course for Admission</p>
+                            </div>
+                        </div>
+
+                        <div className="row daysOpted m-0 mb-4">
+                            <label htmlFor="photo" className="text-start col-3"><b>Days Opted</b></label>
+                            <div className="offset-2 col-4 p-0">
+                                <select id="inputState" className="form-select p-1" aria-label=''>
+                                        <option selected className='fs-6 fw-lighter'>-Select-</option>
+                                        <option>Mon-Wed-Fri</option>
+                                        <option>Tue-Thurs-Sat</option>
+                                        <option>Fast Track (Mon-Fri)</option>
+                                </select>
+                                <p className='my-0 text-start fw-lighter fs-6 fst-italic'>Training Days</p>
+                            </div>
+                        </div>
+
+                        <div className="row bacth m-0 mb-4">
+                            <label htmlFor="photo" className="text-start col-3"><b>Batch</b></label>
+                            <div className="offset-2 col-4 p-0">
+                                <select id="inputState" className="form-select p-1" aria-label=''>
+                                        <option selected className='fs-6 fw-lighter'>-Select-</option>
+                                        <option>8:00 AM - 10:00 AM</option>
+                                        <option>10:00 AM - 10:00 AM</option>
+                                        <option>12:00 PM - 2:00 PM</option>
+                                        <option>2:00 PM - 4:00 PM</option>
+                                        <option>4:00 PM - 6:00 PM</option>
+                                        <option>6:00 PM - 8:00 PM</option>
+                                </select>
+                                <p className='my-0 text-start fw-lighter fs-6 fst-italic'>Course Timing</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
