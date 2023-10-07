@@ -14,7 +14,7 @@ const PhoneInput = (props) => {
     return (
         <div >
             <div className="input-group">
-                <button type="button" className="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <button type="button" style={{ borderColor: '#dee2e6' }} className="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src={selectedCountry.flag} width="20" height="15" className='me-2'></img>{selectedCountry.code}
                 </button>
                 <ul className="dropdown-menu">
@@ -28,7 +28,7 @@ const PhoneInput = (props) => {
                 </ul>
                 <input type="text" className="form-control" aria-label="Text input with segmented dropdown button" />
             </div>
-            <p className='my-0 text-start fw-lighter fs-6 fst-italic '>{props.info}</p>         
+            <p className='my-0 text-start fw-lighter fs-6 fst-italic '>{props.info}</p>
         </div>
     );
 };
