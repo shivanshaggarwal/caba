@@ -15,7 +15,7 @@ const PersonalDetails = (props) => {
                 <div className="card-title text-start col-3 text-primary "><h3>Personal Details</h3></div><hr />
                 <div className="row photo m-0 mb-4">
                     <label htmlFor="photo" className="text-start col-3"><b>Your Photo</b></label>
-                    <ImageInputs id='fileName' setPhotoImage={setPhotoImage} value="photo" info="Your Adhaar Copy Upload. JPG/PNG format less than 5 MB" />
+                    <ImageInputs id='fileName' setPhotoImage={setPhotoImage} value="photo" info="Passport Size Photo in JPG format - JPG/PNG format less than 5 MB" />
                 </div>
                 <div className="row fullname m-0 mb-4">
                     <label htmlFor="fullName" className="text-start col-3">
@@ -49,7 +49,7 @@ const PersonalDetails = (props) => {
                                         </li>
                                     ))}
                                 </ul>
-                                <input type="number" className={`form-control ${formik.errors.mobileNumber && formik.touched.mobileNumber ? "border-danger" : ""}`} id="mobileNumber" onBlur={formik.handleBlur('mobileNumber')} value={formik.values.mobileNumber} onChange={(e) => formik.setFieldValue('mobileNumber', e.target.value)} aria-label="Text input with segmented dropdown button" />
+                                <input type="text" className={`form-control ${formik.errors.mobileNumber && formik.touched.mobileNumber ? "border-danger" : ""}`} id="mobileNumber" onBlur={formik.handleBlur('mobileNumber')} value={formik.values.mobileNumber} onChange={(e) => formik.setFieldValue('mobileNumber', e.target.value)} aria-label="Text input with segmented dropdown button" />
                             </div>
                             {formik.errors.mobileNumber && formik.touched.mobileNumber ? (
                                 <div className='text-danger text-start'>{formik.errors.mobileNumber}</div>
@@ -75,7 +75,7 @@ const PersonalDetails = (props) => {
                                         </li>
                                     ))}
                                 </ul>
-                                <input type="number" className="form-control" id="otherMobileNumber" value={formik.values.otherMobileNumber} onChange={(e) => formik.setFieldValue('otherMobileNumber', e.target.value)} aria-label="Text input with segmented dropdown button" />
+                                <input type="text" className="form-control" id="otherMobileNumber" value={formik.values.otherMobileNumber} onChange={(e) => formik.setFieldValue('otherMobileNumber', e.target.value)} aria-label="Text input with segmented dropdown button" />
                             </div>
                             <p className='my-0 text-start fw-lighter fs-6 fst-italic '>Any Other Phone</p>
                         </div>
