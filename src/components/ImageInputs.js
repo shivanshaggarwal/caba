@@ -1,12 +1,18 @@
 
 import React, { useState, useRef } from 'react';
-import { useForm } from 'react-hook-form'
+import { Modal, Button } from "react-bootstrap";
 
 
 const ImageInputs = (props) => {
     let { setPhotoImage, setAdhaarImage, setTenthCertificateImage, setTwelthCertificateImage, setGraduationImage, setGuardianAdhaarImage, value } = props;
     const [selectedFile, setSelectedFile] = useState(null);
     const [divBorderHovered, setDivBorderHovered] = useState(false);
+    const [show, setShow] = useState(false);
+    const handleClose = () => {
+        videoRef.current.srcObject.getTracks().forEach(track => track.stop());
+        setShow(false)
+    };
+    const handleShow = () => setShow(true);
 
     const handleFileChange = (event) => {
         const file = event.target.files[0];
@@ -34,18 +40,23 @@ const ImageInputs = (props) => {
     const videoRef = useRef(null);
 
     const openCamera = () => {
-        console.log("mfejrnbfjreb")
+
         setIsCameraVisible(true);
-        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices.getUserMedia({ video: true })
-                .then((stream) => {
-                    videoRef.current.srcObject = stream;
-                })
-                .catch((error) => {
-                    console.error('Error accessing the camera:', error);
-                });
-        } else {
-            console.log("lwfnjke")
+        handleShow();
+        try {
+            if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+                navigator.mediaDevices.getUserMedia({ video: true })
+                    .then((stream) => {
+                        videoRef.current.srcObject = stream;
+                    })
+                    .catch((error) => {
+                        console.error('Error accessing the camera:', error);
+                    });
+            } else {
+                throw "Not working"
+            }
+        } catch (error) {
+            console.log(error)
         }
     };
 
@@ -57,19 +68,28 @@ const ImageInputs = (props) => {
         context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
 
         const imageDataURL = canvas.toDataURL('image/png');
-        if (value == "photo") {
-            setPhotoImage(imageDataURL);
-        } else if (value == "adhaar") {
-            setAdhaarImage(imageDataURL)
-        } else if (value == "tenthCertificate") {
-            setTenthCertificateImage(imageDataURL)
-        } else if (value == "twelthCertificate") {
-            setTwelthCertificateImage(imageDataURL)
-        } else if (value == "graduation") {
-            setGraduationImage(imageDataURL)
-        } else if (value == "guardianAdhaar") {
-            setGuardianAdhaarImage(imageDataURL)
+        try{
+            if (value == "photo") {
+                setPhotoImage(imageDataURL);
+                console.log(value)
+            } else if (value == "adhaar") {
+                setAdhaarImage(imageDataURL)
+            } else if (value == "tenthCertificate") {
+                setTenthCertificateImage(imageDataURL)
+            } else if (value == "twelthCertificate") {
+                setTwelthCertificateImage(imageDataURL)
+            } else if (value == "graduation") {
+                setGraduationImage(imageDataURL)
+            } else if (value == "guardianAdhaar") {
+                setGuardianAdhaarImage(imageDataURL)
+            }else{
+                handleClose();
+            }
+            // throw "Empty Image"
+        }catch(error){
+            console.log(error)
         }
+        
 
         // Save the captured image in local storage
         // localStorage.setItem('capturedImage', imageDataURL);
@@ -79,6 +99,7 @@ const ImageInputs = (props) => {
 
         // Hide the camera
         setIsCameraVisible(false);
+        handleClose();
     };
 
     return (
@@ -115,10 +136,30 @@ const ImageInputs = (props) => {
                         </span>
 
                         {isCameraVisible && (
-                            <div style={{ position: 'absolute', width: 200, height: 200, top: 50 }}>
-                                <video style={{ width: '100%', height: '100%' }} ref={videoRef} autoPlay />
-                                <button onClick={captureImage}>Capture Image</button>
-                            </div>
+                            // <div style={{ position: 'absolute', width: 200, height: 200, top: 50 }}>
+                            //     <video style={{ width: '100%', height: '100%' }} ref={videoRef} autoPlay />
+                            //     <button onClick={captureImage}>Capture Image</button>
+                            // </div>
+                            <Modal show={show} onHide={handleClose}>
+                                {/* <Modal.Header closeButton>
+                                    <Modal.Title>Modal heading</Modal.Title>
+                                </Modal.Header> */}
+                                <Modal.Body className='p-0' closeButton>
+                                    <video style={{ width: '100%', height: '100%' }} ref={videoRef} autoPlay />
+                                </Modal.Body>
+                                <Modal.Footer className='d-flex justify-content-center m-0 p-0'>
+                                    <Button className='btn btn-secondary' onClick={handleClose}>
+                                        Close
+                                    </Button>
+                                    <span
+                                        className=" btn material-symbols-outlined m-2 bg-secondary text-light p-2 rounded-circle outline-none"  
+                                        onClick={captureImage}
+                                    >
+                                        photo_camera
+                                    </span>
+                                </Modal.Footer>
+                            </Modal>
+
                         )}
 
                     </div>
