@@ -1,10 +1,10 @@
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useForm } from 'react-hook-form'
 
 
 const ImageInputs = (props) => {
-
+    let { setPhotoImage, setAdhaarImage, setTenthCertificateImage, setTwelthCertificateImage, setGraduationImage, value } = props;
     const [selectedFile, setSelectedFile] = useState(null);
     const [divBorderHovered, setDivBorderHovered] = useState(false);
 
@@ -30,26 +30,54 @@ const ImageInputs = (props) => {
             setSelectedFile(null)
         }
     }
-    function openCamera() {
+    const [isCameraVisible, setIsCameraVisible] = useState(false);
+    const videoRef = useRef(null);
 
-        const cameraStream = document.getElementById('cameraStream');
-
-        // Check if the getUserMedia API is available in the user's browser
+    const openCamera = () => {
+        console.log("mfejrnbfjreb")
+        setIsCameraVisible(true);
         if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-            navigator.mediaDevices
-                .getUserMedia({ video: true }) // Request access to the camera
+            navigator.mediaDevices.getUserMedia({ video: true })
                 .then((stream) => {
-                    // Display the camera stream in a video element
-                    cameraStream.srcObject = stream;
-                    cameraStream.style.display = 'block';
+                    videoRef.current.srcObject = stream;
                 })
                 .catch((error) => {
                     console.error('Error accessing the camera:', error);
                 });
         } else {
-            console.error('getUserMedia is not supported in this browser');
+            console.log("lwfnjke")
         }
-    }
+    };
+
+    const captureImage = () => {
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d');
+        canvas.width = videoRef.current.videoWidth;
+        canvas.height = videoRef.current.videoHeight;
+        context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
+
+        const imageDataURL = canvas.toDataURL('image/png');
+        if (value == "photo") {
+            setPhotoImage(imageDataURL);
+        } else if (value == "adhaar") {
+            setAdhaarImage(imageDataURL)
+        } else if (value == "tenthCertificate") {
+            setTenthCertificateImage(imageDataURL)
+        } else if (value == "twelthCertificate") {
+            setTwelthCertificateImage(imageDataURL)
+        } else if (value == "graduation") {
+            setGraduationImage(imageDataURL)
+        }
+
+        // Save the captured image in local storage
+        // localStorage.setItem('capturedImage', imageDataURL);
+
+        // Stop the camera stream
+        videoRef.current.srcObject.getTracks().forEach(track => track.stop());
+
+        // Hide the camera
+        setIsCameraVisible(false);
+    };
 
     return (
         <div className="offset-2 col-7 photocontainer p-0">
@@ -83,6 +111,13 @@ const ImageInputs = (props) => {
                         >
                             photo_camera
                         </span>
+
+                        {isCameraVisible && (
+                            <div style={{ position: 'absolute', width: 200, height: 200, top: 50 }}>
+                                <video style={{ width: '100%', height: '100%' }} ref={videoRef} autoPlay />
+                                <button onClick={captureImage}>Capture Image</button>
+                            </div>
+                        )}
 
                     </div>
                 </div>

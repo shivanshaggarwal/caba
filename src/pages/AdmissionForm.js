@@ -4,10 +4,30 @@ import PhoneInput from '../components/PhoneInput'
 import FullName from '../components/FullName'
 import Address from '../components/Address'
 import SignatureCanvas from 'react-signature-canvas';
+// import { Formik, Form, Field } from 'formik';
+import { useFormik } from 'formik'
+import * as Yup from 'yup';
+
+const validationSchema = Yup.object().shape({
+    email: Yup.string().email('Enter a valid email address. (eg: yourname@domain.com)').required('Enter a value for this field.')
+});
 
 function AdmissionForm() {
+    const formik = useFormik({
+        enableReinitialize: true,
+        initialValues: {
+            email: ''
+        },
+        validationSchema,
+        onSubmit: async (values, formik) => {
+            console.log(values);
+        }
+    });
+
+    const { errors, values, touched, handleBlur, handleSubmit, setFieldValue, setFieldTouched } = formik;
+
     const signatureRef = useRef();
-    const [captchaText, setCaptchaText] = useState('Please Reload this above button for the Captcha');
+    const [captchaText, setCaptchaText] = useState('');
 
     const handleClear = () => {
         signatureRef.current.clear();
@@ -59,9 +79,15 @@ function AdmissionForm() {
         displayCaptcha();
     };
     // Initialize the CAPTCHA on page load
-    // window.onload = function () {
-    //     displayCaptcha();
-    // };
+    window.onload = function () {
+        displayCaptcha();
+    };
+
+    const [photoImage, setPhotoImage] = useState('')
+    const [adhaarImage, setAdhaarImage] = useState('')
+    const [tenthCertificateImage, setTenthCertificateImage] = useState('')
+    const [twelthCertificateImage, setTwelthCertificateImage] = useState('')
+    const [graduationImage, setGraduationImage] = useState('')
 
     return (
         <div className='container'>
@@ -73,7 +99,8 @@ function AdmissionForm() {
                         <div className="card-title text-start col-3 text-primary "><h3>Personal Details</h3></div><hr />
                         <div className="row photo m-0 mb-4">
                             <label htmlFor="photo" className="text-start col-3"><b>Your Photo</b></label>
-                            <ImageInputs id='fileName' info="Your Adhaar Copy Upload. JPG/PNG format less than 5 MB" />
+                            <ImageInputs id='fileName' setPhotoImage={setPhotoImage} value="photo" info="Your Adhaar Copy Upload. JPG/PNG format less than 5 MB" />
+                            {photoImage}
                         </div>
                         <div className="row fullname m-0 mb-4">
                             <label htmlFor="fullName" className="text-start col-3">
@@ -84,7 +111,10 @@ function AdmissionForm() {
                         <div className="row email m-0 mb-4">
                             <label htmlFor="photo" className="text-start col-3"><b>Email</b></label>
                             <div className="offset-2 col-4 p-0">
-                                <input type="text" className="form-control" id="specificSizeInputName" />
+                                <input type="text" className={`form-control ${errors.email && touched.email ? "border-danger" : ""}`} id="email" onBlur={handleBlur('email')} value={values.email} onChange={(e) => setFieldValue('email', e.target.value)} />
+                                {errors.email && touched.email ? (
+                                    <div className='text-danger text-start'>{errors.email}</div>
+                                ) : null}
                             </div>
                         </div>
                         <div className="row phone m-0 mb-4">
@@ -102,19 +132,29 @@ function AdmissionForm() {
 
                         <div className="row adhar m-0  mb-4">
                             <label htmlFor="photo" className="text-start col-3"><b>Self Aadhar</b></label>
-                            <ImageInputs id='fileName' info="Your Adhaar Copy Upload. JPG/PNG format less than 5 MB" />
+                            <ImageInputs id='fileName' setAdhaarImage={setAdhaarImage}
+                                value="adhaar" info="Your Adhaar Copy Upload. JPG/PNG format less than 5 MB" />
+                            {adhaarImage}
                         </div>
                         <div className="row tenth m-0 mb-4">
                             <label htmlFor="photo" className="text-start col-3"><b>10th Certificate</b></label>
-                            <ImageInputs id='fileName' info="Copy of your 10th Board Certificate. JPG/PNG format less than 10 MB" />
+                            <ImageInputs id='fileName'
+                                setTenthCertificateImage={setTenthCertificateImage}
+                                value="tenthCertificate" info="Copy of your 10th Board Certificate. JPG/PNG format less than 10 MB" />
+                            {tenthCertificateImage}
                         </div>
                         <div className="row twelth m-0  mb-4">
                             <label htmlFor="photo" className="text-start col-3"><b>12th Certificate</b></label>
-                            <ImageInputs id='fileName' info="12th Certificate Copy Upload. JPG/PNG format less than 10 MB" />
+                            <ImageInputs id='fileName'
+                                setT welthCertificateImage={setTwelthCertificateImage}
+                                value="twelthCertificate" info="12th Certificate Copy Upload. JPG/PNG format less than 10 MB" />
+                            {twelthCertificateImage}
                         </div>
                         <div className="row graduation m-0  mb-4">
                             <label htmlFor="photo" className="text-start col-3"><b>Graduation Certificate</b></label>
-                            <ImageInputs id='fileName' info="Copy of Graduation Degree (if finished). JPG/PNG format less than 10 MB" />
+                            <ImageInputs id='fileName'
+                                setGraduationImage={setGraduationImage} value="graduation" info="Copy of Graduation Degree (if finished). JPG/PNG format less than 10 MB" />
+                            {graduationImage}
                         </div>
                         <div className="row address m-0  mb-4 g-3">
                             <label for="inputAddress" class="ps-3 form-label col-3 text-start"><b>Your Address</b></label>
@@ -154,6 +194,7 @@ function AdmissionForm() {
                             <label for="inputAddress" class="ps-3 form-label col-3 text-start"><b>Your Address</b></label>
                             <div className='offset-2 col-7 p-0'>
                                 <Address />
+                                <p className='text-start fs-6 fw-lighter'>Address of your Guardian</p>
                             </div>
                         </div>
 
@@ -318,7 +359,10 @@ function AdmissionForm() {
                                 <p>Enter the text in the box below</p>
                                 <div style={{ display: 'flex' }}>
                                     <input style={{ borderRadius: 0, width: '75%' }} className="form-control" type="text" id="captchaInput" placeholder="Enter CAPTCHA" />
-                                    <p onClick={handleReloadCaptcha} className='ms-3' style={{ cursor: 'pointer' }}>frf</p>
+                                    {/* <span onClick={handleReloadCaptcha} className='ms-3 material-symbols-outlined' style={{ cursor: 'pointer' }}></span> */}
+                                    <span onClick={handleReloadCaptcha} class="ms-3 mt-1 material-symbols-outlined" style={{ cursor: 'pointer' }}>
+                                        move
+                                    </span>
                                 </div>
                                 <div id="captchaText" className='mt-2' style={{ border: '1px solid #dee2e6', padding: 16, letterSpacing: '4px', fontWeight: 'bold', textDecoration: 'line-through', textAlign: 'center' }}>
                                     {captchaText}
