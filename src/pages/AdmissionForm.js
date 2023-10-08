@@ -1,37 +1,119 @@
 import React, { useRef, useState } from 'react'
 import ImageInputs from '../components/ImageInputs'
-import PhoneInput from '../components/PhoneInput'
-import FullName from '../components/FullName'
-import Address from '../components/Address'
-import SignatureCanvas from 'react-signature-canvas';
+import FullName from '../components/Personal Details/FullName'
+import Address from '../components/Personal Details/Address'
 // import { Formik, Form, Field } from 'formik';
 import { useFormik } from 'formik'
 import * as Yup from 'yup';
+import PersonalDetails from '../components/Personal Details'
+import ParentDetails from '../components/ParentDetails'
+import CourseDetails from '../components/CourseDetails'
+import FeeDetails from '../components/FeeDetails'
 
 const validationSchema = Yup.object().shape({
-    email: Yup.string().email('Enter a valid email address. (eg: yourname@domain.com)').required('Enter a value for this field.')
+    firstName: Yup.string().required("Enter the value for this field"),
+    middleName: Yup.string().required("Enter the value for this field"),
+    lastName: Yup.string().required("Enter the value for this field"),
+    email: Yup.string().email('Enter a valid email address. (eg: yourname@domain.com)').required('Enter a value for this field.'),
+    mobileNumber: Yup.string().min(10, 'You must enter at least 10 digits').required('Enter a number for this field'),
+    streetAddress: Yup.string().required('Enter a value for this field'),
+    address: Yup.string().required('Enter a value for this field'),
+    city: Yup.string().required('Enter a value for this field'),
+    state: Yup.string().required('Enter a value for this field'),
+    pincode: Yup.string().required('Enter a value for this field'),
+    country: Yup.string().required('Enter a value for this field'),
+    guardianFirstName: Yup.string().required("Enter the value for this field"),
+    guardianMiddleName: Yup.string().required("Enter the value for this field"),
+    guardianLastName: Yup.string().required("Enter the value for this field"),
+    guardianStreetAddress: Yup.string().required('Enter a value for this field'),
+    guardianAddress: Yup.string().required('Enter a value for this field'),
+    guardianCity: Yup.string().required('Enter a value for this field'),
+    guardianState: Yup.string().required('Enter a value for this field'),
+    guardianPincode: Yup.string().required('Enter a value for this field'),
+    guardianCountry: Yup.string().required('Enter a value for this field'),
+    guardianMobileNumber: Yup.string().min(10, 'You must enter at least 10 digits').required('Enter a number for this field'),
+    guardianEmail: Yup.string().email('Enter a valid email address. (eg: yourname@domain.com)').required('Enter a value for this field.'),
+    rollNumber: Yup.string().required('Enter a number for this field'),
+    dateOfJoining: Yup.string().required('Choose a date'),
+    courseFee: Yup.string().required('Enter a number for this field'),
+    admissionFee: Yup.string().required('Enter a number for this field'),
+    monthlyInstallment: Yup.string().required('Enter a number for this field'),
 });
 
+const countries = [
+    { code: '+91', name: 'India', flag: require('../india.png') },
+];
+
 function AdmissionForm() {
+    const [photoImage, setPhotoImage] = useState('')
+    const [adhaarImage, setAdhaarImage] = useState('')
+    const [tenthCertificateImage, setTenthCertificateImage] = useState('')
+    const [twelthCertificateImage, setTwelthCertificateImage] = useState('')
+    const [graduationImage, setGraduationImage] = useState('');
+    const [selectedCountry, setSelectedCountry] = useState(countries[0]);
+    const [guardianAdhaarImage, setGuardianAdhaarImage] = useState('')
+
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: {
-            email: ''
+            email: '',
+            salutation: '',
+            firstName: '',
+            middleName: '',
+            lastName: '',
+            mobileNumber: '',
+            otherMobileNumber: '',
+            streetAddress: '',
+            address: '',
+            city: '',
+            state: '',
+            pincode: '',
+            country: '',
+            photoImage: photoImage,
+            adhaarImage: adhaarImage,
+            tenthCertificateImage: tenthCertificateImage,
+            twelthCertificateImage: twelthCertificateImage,
+            graduationImage: graduationImage,
+            selectedCountry: selectedCountry.name,
+            guardianAdhaarImage: guardianAdhaarImage,
+            guardianSalutation: '',
+            guardianFirstName: '',
+            guardianMiddleName: '',
+            guardianLastName: '',
+            relationShip: '',
+            guardianStreetAddress: '',
+            guardianAddress: '',
+            guardianCity: '',
+            guardianState: '',
+            guardianPincode: '',
+            guardianCountry: '',
+            guardianMobileNumber: '',
+            guardianEmail: '',
+            rollNumber: '',
+            dateOfJoining: '',
+            trainingType: '',
+            courseOpted: '',
+            daysOpted: '',
+            batch: '',
+            courseFee: '',
+            admissionFee: '',
+            monthlyInstallment: '',
+            feeMode: '',
+            signature: '',
         },
         validationSchema,
         onSubmit: async (values, formik) => {
+            console.log("mfrnf")
+            validateCaptcha()
+            console.log(selectedCountry)
             console.log(values);
         }
     });
 
     const { errors, values, touched, handleBlur, handleSubmit, setFieldValue, setFieldTouched } = formik;
 
-    const signatureRef = useRef();
     const [captchaText, setCaptchaText] = useState('');
-
-    const handleClear = () => {
-        signatureRef.current.clear();
-    };
+    const signatureRef = useRef();
 
     const handleSave = () => {
         const signatureDataUrl = signatureRef.current.toDataURL();
@@ -39,7 +121,6 @@ function AdmissionForm() {
         console.log(signatureDataUrl);
     };
 
-    // Generate a random CAPTCHA string
     function generateCaptcha() {
         const captchaChars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         const captchaLength = 6;
@@ -70,6 +151,7 @@ function AdmissionForm() {
             displayCaptcha();
         } else {
             alert('CAPTCHA is incorrect. Please try again.');
+            setCaptchaText('')
             // Optionally, refresh the CAPTCHA for another attempt
             displayCaptcha();
         }
@@ -83,294 +165,17 @@ function AdmissionForm() {
         displayCaptcha();
     };
 
-    const [photoImage, setPhotoImage] = useState('')
-    const [adhaarImage, setAdhaarImage] = useState('')
-    const [tenthCertificateImage, setTenthCertificateImage] = useState('')
-    const [twelthCertificateImage, setTwelthCertificateImage] = useState('')
-    const [graduationImage, setGraduationImage] = useState('')
-
     return (
         <div className='container'>
             <div className="card">
                 <div className="card-header">Caba Innovatives Admission Form</div>
                 <div className="card-subtitle">Student Admission Form</div>
                 <div className="card-body">
-                    <div className="row personalDetails">
-                        <div className="card-title text-start col-3 text-primary "><h3>Personal Details</h3></div><hr />
-                        <div className="row photo m-0 mb-4">
-                            <label htmlFor="photo" className="text-start col-3"><b>Your Photo</b></label>
-                            <ImageInputs id='fileName' setPhotoImage={setPhotoImage} value="photo" info="Your Adhaar Copy Upload. JPG/PNG format less than 5 MB" />
-                            {photoImage}
-                        </div>
-                        <div className="row fullname m-0 mb-4">
-                            <label htmlFor="fullName" className="text-start col-3">
-                                <b>Full Name <span className='text-danger'>*</span></b>
-                            </label>
-                            <FullName />
-                        </div>
-                        <div className="row email m-0 mb-4">
-                            <label htmlFor="photo" className="text-start col-3"><b>Email</b></label>
-                            <div className="offset-2 col-4 p-0">
-                                <input type="text" className={`form-control ${errors.email && touched.email ? "border-danger" : ""}`} id="email" onBlur={handleBlur('email')} value={values.email} onChange={(e) => setFieldValue('email', e.target.value)} />
-                                {errors.email && touched.email ? (
-                                    <div className='text-danger text-start'>{errors.email}</div>
-                                ) : null}
-                            </div>
-                        </div>
-                        <div className="row phone m-0 mb-4">
-                            <label htmlFor="photo" className="text-start col-3"><b>Mobile</b></label>
-                            <div className="offset-2 col-4 p-0">
-                                <PhoneInput info="Your Mobile" />
-                            </div>
-                        </div>
-                        <div className="row phone m-0 mb-4">
-                            <label htmlFor="photo" className="text-start col-3"><b>Mobile</b></label>
-                            <div className="offset-2 col-4 p-0">
-                                <PhoneInput info="Any Other Phone" />
-                            </div>
-                        </div>
-
-                        <div className="row adhar m-0  mb-4">
-                            <label htmlFor="photo" className="text-start col-3"><b>Self Aadhar</b></label>
-                            <ImageInputs id='fileName' setAdhaarImage={setAdhaarImage}
-                                value="adhaar" info="Your Adhaar Copy Upload. JPG/PNG format less than 5 MB" />
-                            {adhaarImage}
-                        </div>
-                        <div className="row tenth m-0 mb-4">
-                            <label htmlFor="photo" className="text-start col-3"><b>10th Certificate</b></label>
-                            <ImageInputs id='fileName'
-                                setTenthCertificateImage={setTenthCertificateImage}
-                                value="tenthCertificate" info="Copy of your 10th Board Certificate. JPG/PNG format less than 10 MB" />
-                            {tenthCertificateImage}
-                        </div>
-                        <div className="row twelth m-0  mb-4">
-                            <label htmlFor="photo" className="text-start col-3"><b>12th Certificate</b></label>
-                            <ImageInputs id='fileName'
-                                setT welthCertificateImage={setTwelthCertificateImage}
-                                value="twelthCertificate" info="12th Certificate Copy Upload. JPG/PNG format less than 10 MB" />
-                            {twelthCertificateImage}
-                        </div>
-                        <div className="row graduation m-0  mb-4">
-                            <label htmlFor="photo" className="text-start col-3"><b>Graduation Certificate</b></label>
-                            <ImageInputs id='fileName'
-                                setGraduationImage={setGraduationImage} value="graduation" info="Copy of Graduation Degree (if finished). JPG/PNG format less than 10 MB" />
-                            {graduationImage}
-                        </div>
-                        <div className="row address m-0  mb-4 g-3">
-                            <label for="inputAddress" class="ps-3 form-label col-3 text-start"><b>Your Address</b></label>
-                            <div className='offset-2 col-7 p-0'>
-                                <Address />
-                            </div>
-                        </div>
-                    </div>
-
-                    <div className="row parentDetails">
-                        <div className="card-title text-start col-3 text-success ">
-                            <h4>Parent / Guardian Details</h4>
-                        </div>
-                        <hr />
-                        <div className="row fullname m-0 mb-4">
-                            <label htmlFor="fullName" className="text-start col-3">
-                                <b>Guardian Name <span className='text-danger'>*</span></b>
-                            </label>
-                            <FullName />
-                        </div>
-
-                        <div className="row relationship m-0 mb-4">
-                            <label htmlFor="photo" className="text-start col-3"><b>Relationship</b></label>
-                            <div className="offset-2 col-3 p-0">
-                                <select id="inputState" className="form-select p-1" aria-label=''>
-                                    <option selected className='fs-6 fw-lighter'>-Select-</option>
-                                    <option>Father</option>
-                                    <option>Mother</option>
-                                    <option>Brother</option>
-                                    <option>Sister</option>
-                                    <option>Other</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div className="row address m-0 mb-4 g-3">
-                            <label for="inputAddress" class="ps-3 form-label col-3 text-start"><b>Your Address</b></label>
-                            <div className='offset-2 col-7 p-0'>
-                                <Address />
-                                <p className='text-start fs-6 fw-lighter'>Address of your Guardian</p>
-                            </div>
-                        </div>
-
-                        <div className="row phone m-0 mb-4">
-                            <label htmlFor="photo" className="text-start col-3"><b>Guardian Phone</b></label>
-                            <div className="offset-2 col-4 p-0">
-                                <PhoneInput info="Father / Mother Phone" />
-                            </div>
-                        </div>
-
-                        <div className="row email m-0 mb-4">
-                            <label htmlFor="photo" className="text-start col-3"><b>Guardian Email</b></label>
-                            <div className="offset-2 col-4 p-0">
-                                <input type="email" className="form-control" id="specificSizeInputName" />
-                            </div>
-                        </div>
-
-                        <div className="row guardianAdhar mx-0  mb-4">
-                            <label htmlFor="photo" className="text-start col-3"><b>Guardian Aadhar</b></label>
-                            <ImageInputs id='fileName' info="Copy of Father / Mother Aadhaar Copy. Should be JPG format less than 5 MB" />
-                        </div>
-
-
-
-                    </div>
-
-                    <div className="row courseDetails">
-                        <div className="card-title text-start col-3 text-danger ">
-                            <h4>Course Details</h4>
-                        </div>
-                        <hr />
-                        <div className="row email m-0 mb-4">
-                            <label htmlFor="photo" className="text-start col-3"><b>Roll Number</b></label>
-                            <div className="offset-2 col-4 p-0">
-                                <input type="text" className="form-control" id="specificSizeInputName" placeholder='Official Use Only' />
-                            </div>
-                        </div>
-                        <div className="row date m-0 mb-4">
-                            <label htmlFor="photo" className="text-start col-3"><b>Date Of Joining</b></label>
-                            <div className="offset-2 col-4 p-0">
-                                <input type="text" className="form-control" id="specificSizeInputName" placeholder='Official Use Only' />
-                            </div>
-                        </div>
-                        <div className="row trainingType m-0 mb-4">
-                            <label htmlFor="photo" className="text-start col-3"><b>Training Type</b></label>
-                            <div className="offset-2 col-4 p-0">
-                                <select id="inputState" className="form-select p-1" aria-label=''>
-                                    <option selected className='fs-6 fw-lighter'>-Select-</option>
-                                    <option>Online</option>
-                                    <option>Offline</option>
-                                </select>
-                                <p className='my-0 text-start fw-lighter fs-6 fst-italic'>Type of Training</p>
-                            </div>
-                        </div>
-
-                        <div className="row courseOpted m-0 mb-4">
-                            <label htmlFor="photo" className="text-start col-3">
-                                <b>Course Opted</b>
-                            </label>
-                            <div className="offset-2 col-4 p-0">
-                                <select id="inputState" className="form-select p-1" aria-label=''>
-                                    <option selected className='fs-6 fw-lighter'>-Select-</option>
-                                    <option>6 Months Graphic Design</option>
-                                    <option>6 Months Video Editing</option>
-                                    <option>8 Months Web Designing</option>
-                                    <option>8 Months Web Development</option>
-                                    <option>10 Months Motion Graphics</option>
-                                    <option>12 Months Digital Marketing</option>
-                                    <option>12 Months Web Design & Development</option>
-                                    <option>12 Months Motion Graphics & Social Media</option>
-                                    <option>14 Months Motion Graphics & Web Design</option>
-                                    <option>14 Months Motion Graphics & SEO</option>
-                                    <option>18 Months Motion Graphics</option>
-                                    <option>24 Months Full Advanced Course in Digital Media</option>
-                                    <option>Customised</option>
-                                    <option>Other</option>
-                                </select>
-                                <p className='my-0 text-start fw-lighter fs-6 fst-italic'>Select the Course for Admission</p>
-                            </div>
-                        </div>
-
-                        <div className="row daysOpted m-0 mb-4">
-                            <label htmlFor="photo" className="text-start col-3"><b>Days Opted</b></label>
-                            <div className="offset-2 col-4 p-0">
-                                <select id="inputState" className="form-select p-1" aria-label=''>
-                                    <option selected className='fs-6 fw-lighter'>-Select-</option>
-                                    <option>Mon-Wed-Fri</option>
-                                    <option>Tue-Thurs-Sat</option>
-                                    <option>Fast Track (Mon-Fri)</option>
-                                </select>
-                                <p className='my-0 text-start fw-lighter fs-6 fst-italic'>Training Days</p>
-                            </div>
-                        </div>
-
-                        <div className="row bacth m-0 mb-4">
-                            <label htmlFor="photo" className="text-start col-3"><b>Batch</b></label>
-                            <div className="offset-2 col-4 p-0">
-                                <select id="inputState" className="form-select p-1" aria-label=''>
-                                    <option selected className='fs-6 fw-lighter'>-Select-</option>
-                                    <option>8:00 AM - 10:00 AM</option>
-                                    <option>10:00 AM - 10:00 AM</option>
-                                    <option>12:00 PM - 2:00 PM</option>
-                                    <option>2:00 PM - 4:00 PM</option>
-                                    <option>4:00 PM - 6:00 PM</option>
-                                    <option>6:00 PM - 8:00 PM</option>
-                                </select>
-                                <p className='my-0 text-start fw-lighter fs-6 fst-italic'>Course Timing</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="row courseDetails">
-                        <div className="card-title text-start col-3 text-danger ">
-                            <h4>Fee Details</h4>
-                        </div>
-                        <hr />
-                        <div className="row m-0 mb-4">
-                            <label htmlFor="" className="text-start col-3"><b>Total Course Fee</b></label>
-                            <div className="offset-2 col-4 p-0">
-                                <input type="text" className="form-control" id="totalCourseFees" />
-                            </div>
-                        </div>
-                        <div className="row m-0 mb-4">
-                            <label htmlFor="" className="text-start col-3"><b>Admission Fee</b></label>
-                            <div className="offset-2 col-7 p-0">
-                                <input type="text" className="form-control" id="admissionFee" />
-                            </div>
-                        </div>
-                        <div className="row m-0 mb-4">
-                            <label htmlFor="photo" className="text-start col-3"><b>Montly Installment</b></label>
-                            <div className="offset-2 col-7 p-0">
-                                <input type="text" className="form-control" id="montlyInstallment" />
-                            </div>
-                        </div>
-                        <div className="row trainingType m-0 mb-4">
-                            <label htmlFor="photo" className="text-start col-3"><b>Fee Mode</b></label>
-                            <div className="offset-2 col-4 p-0">
-                                <select id="inputState" className="form-select p-1" aria-label=''>
-                                    <option selected className='fs-6 fw-lighter'>Installments or One Time</option>
-                                    <option>Installments</option>
-                                    <option>Online</option>
-                                    <option>2 Part</option>
-                                </select>
-                                <p className='my-0 text-start fw-lighter fs-6 fst-italic'>Installment Plan - 15000 Admission Fee 6000 Montly from Next Month</p>
-                            </div>
-                        </div>
-                        <div className="row m-0 mb-4">
-                            <label htmlFor="photo" className="text-start col-3"><b>Signature</b></label>
-                            <div className="offset-2 col-7 p-0" style={{ width: '50%' }}>
-                                <SignatureCanvas
-                                    ref={signatureRef}
-                                    canvasProps={{ height: '150', className: 'signatureCanvas', style: { width: '100%', border: '2px solid #dee2e6' } }}
-                                />
-                                <div>
-                                    <p style={{ color: 'blue', textDecoration: 'underline', display: 'flex', cursor: 'pointer' }} onClick={handleClear}>Clear</p>
-                                    {/* <button onClick={handleSave}>Save Signature</button> */}
-                                </div>
-                            </div>
-                        </div>
-                        <div id="captchaContainer" className="row m-0 mb-4">
-                            <label htmlFor="photo" className="text-start col-3"><b>Verification Code</b></label>
-                            <div className="offset-2 col-4 p-2" style={{ display: 'flex', flexDirection: 'column', textAlign: 'start', border: '1px solid #dee2e6', backgroundColor: '#efebeb' }}>
-                                <p>Enter the text in the box below</p>
-                                <div style={{ display: 'flex' }}>
-                                    <input style={{ borderRadius: 0, width: '75%' }} className="form-control" type="text" id="captchaInput" placeholder="Enter CAPTCHA" />
-                                    {/* <span onClick={handleReloadCaptcha} className='ms-3 material-symbols-outlined' style={{ cursor: 'pointer' }}></span> */}
-                                    <span onClick={handleReloadCaptcha} class="ms-3 mt-1 material-symbols-outlined" style={{ cursor: 'pointer' }}>
-                                        move
-                                    </span>
-                                </div>
-                                <div id="captchaText" className='mt-2' style={{ border: '1px solid #dee2e6', padding: 16, letterSpacing: '4px', fontWeight: 'bold', textDecoration: 'line-through', textAlign: 'center' }}>
-                                    {captchaText}
-                                </div>
-                                {/* <button onclick="validateCaptcha()">Submit</button> */}
-                            </div>
-                        </div>
-                    </div>
+                    <PersonalDetails formik={formik} setPhotoImage={setPhotoImage} setAdhaarImage={setAdhaarImage} setTenthCertificateImage={setTenthCertificateImage} setTwelthCertificateImage={setTwelthCertificateImage} setGraduationImage={setGraduationImage} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} countries={countries} />
+                    <ParentDetails formik={formik} countries={countries} setGuardianAdhaarImage={setGuardianAdhaarImage} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} />
+                    <CourseDetails formik={formik} />
+                    <FeeDetails formik={formik} captchaText={captchaText} setCaptchaText={setCaptchaText} />
+                    <button type="submit" onClick={handleSubmit}>Submit</button>
                 </div>
             </div>
         </div>

@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 
 
 const ImageInputs = (props) => {
-    let { setPhotoImage, setAdhaarImage, setTenthCertificateImage, setTwelthCertificateImage, setGraduationImage, value } = props;
+    let { setPhotoImage, setAdhaarImage, setTenthCertificateImage, setTwelthCertificateImage, setGraduationImage, setGuardianAdhaarImage, value } = props;
     const [selectedFile, setSelectedFile] = useState(null);
     const [divBorderHovered, setDivBorderHovered] = useState(false);
 
@@ -67,6 +67,8 @@ const ImageInputs = (props) => {
             setTwelthCertificateImage(imageDataURL)
         } else if (value == "graduation") {
             setGraduationImage(imageDataURL)
+        } else if (value == "guardianAdhaar") {
+            setGuardianAdhaarImage(imageDataURL)
         }
 
         // Save the captured image in local storage
