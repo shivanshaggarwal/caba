@@ -12,8 +12,6 @@ import FeeDetails from '../components/FeeDetails'
 
 const validationSchema = Yup.object().shape({
     firstName: Yup.string().required("Enter the value for this field"),
-    middleName: Yup.string().required("Enter the value for this field"),
-    lastName: Yup.string().required("Enter the value for this field"),
     email: Yup.string().email('Enter a valid email address. (eg: yourname@domain.com)').required('Enter a value for this field.'),
     mobileNumber: Yup.string().min(10, 'You must enter at least 10 digits').required('Enter a number for this field'),
     streetAddress: Yup.string().required('Enter a value for this field'),
@@ -23,7 +21,6 @@ const validationSchema = Yup.object().shape({
     pincode: Yup.string().required('Enter a value for this field'),
     country: Yup.string().required('Enter a value for this field'),
     guardianFirstName: Yup.string().required("Enter the value for this field"),
-    guardianMiddleName: Yup.string().required("Enter the value for this field"),
     guardianLastName: Yup.string().required("Enter the value for this field"),
     guardianStreetAddress: Yup.string().required('Enter a value for this field'),
     guardianAddress: Yup.string().required('Enter a value for this field'),

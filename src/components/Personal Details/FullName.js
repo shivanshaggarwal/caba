@@ -20,15 +20,15 @@ function FullName(props) {
                     <label htmlFor="firstName">First</label>
                 </div>
                 <div className="col-md-3 p-1 text-start">
-                    <input type="text" className={`form-control ${formik.errors.middleName && formik.touched.middleName ? "border-danger" : ""}`} id="middleName" onBlur={formik.handleBlur('middleName')} value={formik.values.middleName} onChange={(e) => formik.setFieldValue('middleName', e.target.value)} />
+                    <input type="text" className="form-control" value={formik.values.middleName} onChange={(e) => formik.setFieldValue('middleName', e.target.value)} />
                     <label htmlFor="middleName">Middle</label>
                 </div>
                 <div className="col-md-4 p-1 text-start">
-                    <input type="text" className={`form-control ${formik.errors.lastName && formik.touched.lastName ? "border-danger" : ""}`} id="lastName" onBlur={formik.handleBlur('lastName')} value={formik.values.lastName} onChange={(e) => formik.setFieldValue('lastName', e.target.value)} />
+                    <input type="text" className="form-control" value={formik.values.lastName} onChange={(e) => formik.setFieldValue('lastName', e.target.value)} />
                     <label htmlFor="lastName">Last</label>
                 </div>
             </div>
-            {((formik.errors.firstName && formik.touched.firstName) || (formik.errors.middleName && formik.touched.middleName) || (formik.errors.lastName && formik.touched.lastName)) ? (
+            {(formik.errors.firstName && formik.touched.firstName)  ? (
                 <div className='text-danger text-start'>{formik.errors.firstName}</div>
             ) : null}
         </div>

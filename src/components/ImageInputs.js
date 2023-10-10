@@ -117,6 +117,7 @@
                              type="file" name="" id="fileName"
                              className='d-none' onChange={handleFileChange}
                              accept=".jpg, .jpeg, .png"
+                            
                          />
                      </div>
                      <div className='col-12 col-sm-6'>
