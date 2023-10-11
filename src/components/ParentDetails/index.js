@@ -84,7 +84,7 @@ const ParentDetails = (props) => {
 
                 <div className="row guardianAdhar mx-0  mb-4">
                     <label htmlFor="photo" className="text-start col-3"><b>Guardian Aadhar</b></label>
-                    <ImageInputs id='fileName' setGuardianAdhaarImage={setGuardianAdhaarImage} value="guardianAdhaar" info="Copy of Father / Mother Aadhaar Copy. Should be JPG format less than 5 MB" />
+                    <ImageInputs idOfImage='guardianAdhaar' setGuardianAdhaarImage={setGuardianAdhaarImage} value="guardianAdhaar" info="Copy of Father / Mother Aadhaar Copy. Should be JPG format less than 5 MB" />
                 </div>
             </div>
         </>

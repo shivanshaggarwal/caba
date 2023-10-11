@@ -1,13 +1,17 @@
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import SignatureCanvas from 'react-signature-canvas';
 
 const FeeDetails = (props) => {
-    let { formik, captchaText, setCaptchaText } = props;
+    let { formik, captchaText, setCaptchaText, reloadcaptcha } = props;
     const signatureRef = useRef();
 
     const handleClear = () => {
         signatureRef.current.clear();
     };
+
+    useEffect(() => {
+        displayCaptcha()
+    }, [reloadcaptcha]);
 
     const handleSave = () => {
         const signatureDataUrl = signatureRef.current.toDataURL();
@@ -35,12 +39,22 @@ const FeeDetails = (props) => {
         // captchaText.textContent = captcha;
     }
 
+    const [signature, setSignature] = useState('');
+
     const handleReloadCaptcha = () => {
         displayCaptcha();
     };
     // Initialize the CAPTCHA on page load
     window.onload = function () {
         displayCaptcha();
+    };
+
+    const handleSignatureChange = () => {
+        console.log(";la;sfhkjwjfvgg")
+        const signatureCanvas = signatureRef.current;
+        const signatureDataUrl = signatureCanvas.toDataURL(); // Get the signature data URL
+        console.log("asnfbhwje", signatureDataUrl)
+        // formik.setFieldValue('signature', signatureDataUrl); // Set the signature value in Formik
     };
 
     return (
@@ -96,15 +110,20 @@ const FeeDetails = (props) => {
                     <label htmlFor="photo" className="text-start col-3"><b>Signature</b></label>
                     <div className="offset-2 col-7 p-0" style={{ width: '50%' }}>
                         <SignatureCanvas
+                            // onChange={(e) => setSignature('signature', signatureRef.current.toDataURL())}
+                            // onBlur={() => { formik.handleBlur('signature'); setSignature(signatureRef.current.toDataURL()) }}
+                            onClick={handleSave}
                             ref={signatureRef}
                             canvasProps={{ height: '150', className: 'signatureCanvas', style: { width: '100%', border: '2px solid #dee2e6' } }}
+                            onChange={handleSignatureChange} // Save on change
+                            onBlur={handleSignatureChange}
                         />
                         <div>
                             <p style={{ color: 'blue', textDecoration: 'underline', display: 'flex', cursor: 'pointer' }} onClick={handleClear}>Clear</p>
-                            {/* <button onClick={handleSave}>Save Signature</button> */}
                         </div>
                     </div>
                 </div>
+                dwkljn{signature}
                 <div id="captchaContainer" className="row m-0 mb-4">
                     <label htmlFor="photo" className="text-start col-3"><b>Verification Code</b></label>
                     <div className="offset-2 col-4 p-2" style={{ display: 'flex', flexDirection: 'column', textAlign: 'start', border: '1px solid #dee2e6', backgroundColor: '#efebeb' }}>

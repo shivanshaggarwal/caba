@@ -15,7 +15,7 @@ const PersonalDetails = (props) => {
                 <div className="card-title text-start col-3 text-primary "><h3>Personal Details</h3></div><hr />
                 <div className="row photo m-0 mb-4">
                     <label htmlFor="photo" className="text-start col-3"><b>Your Photo</b></label>
-                    <ImageInputs id='fileName' setPhotoImage={setPhotoImage} value="photo" info="Passport Size Photo in JPG format - JPG/PNG format less than 5 MB" />
+                    <ImageInputs idOfImage='photo' setPhotoImage={setPhotoImage} value="photo" info="Passport Size Photo in JPG format - JPG/PNG format less than 5 MB" />
                 </div>
                 <div className="row fullname m-0 mb-4">
                     <label htmlFor="fullName" className="text-start col-3">
@@ -84,24 +84,24 @@ const PersonalDetails = (props) => {
 
                 <div className="row adhar m-0  mb-4">
                     <label htmlFor="photo" className="text-start col-3"><b>Self Aadhar</b></label>
-                    <ImageInputs id='fileName' setAdhaarImage={setAdhaarImage}
+                    <ImageInputs idOfImage='adhaar' setAdhaarImage={setAdhaarImage}
                         value="adhaar" info="Your Adhaar Copy Upload. JPG/PNG format less than 5 MB" />
                 </div>
                 <div className="row tenth m-0 mb-4">
                     <label htmlFor="photo" className="text-start col-3"><b>10th Certificate</b></label>
-                    <ImageInputs id='fileName'
+                    <ImageInputs idOfImage='tenthCertificate'
                         setTenthCertificateImage={setTenthCertificateImage}
                         value="tenthCertificate" info="Copy of your 10th Board Certificate. JPG/PNG format less than 10 MB" />
                 </div>
                 <div className="row twelth m-0  mb-4">
                     <label htmlFor="photo" className="text-start col-3"><b>12th Certificate</b></label>
-                    <ImageInputs id='fileName'
+                    <ImageInputs idOfImage='twelthCertificate'
                         setT welthCertificateImage={setTwelthCertificateImage}
                         value="twelthCertificate" info="12th Certificate Copy Upload. JPG/PNG format less than 10 MB" />
                 </div>
                 <div className="row graduation m-0  mb-4">
                     <label htmlFor="photo" className="text-start col-3"><b>Graduation Certificate</b></label>
-                    <ImageInputs id='fileName'
+                    <ImageInputs idOfImage='graduation'
                         setGraduationImage={setGraduationImage} value="graduation" info="Copy of Graduation Degree (if finished). JPG/PNG format less than 10 MB" />
                 </div>
                 <div className="row address m-0  mb-4 g-3">
