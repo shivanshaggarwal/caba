@@ -11,31 +11,48 @@ import CourseDetails from '../components/CourseDetails'
 import FeeDetails from '../components/FeeDetails'
 
 const validationSchema = Yup.object().shape({
-    // firstName: Yup.string().required("Enter the value for this field"),
-    // email: Yup.string().email('Enter a valid email address. (eg: yourname@domain.com)').required('Enter a value for this field.'),
-    // mobileNumber: Yup.string().min(10, 'You must enter at least 10 digits').required('Enter a number for this field'),
-    // streetAddress: Yup.string().required('Enter a value for this field'),
-    // address: Yup.string().required('Enter a value for this field'),
-    // city: Yup.string().required('Enter a value for this field'),
-    // state: Yup.string().required('Enter a value for this field'),
-    // pincode: Yup.string().required('Enter a value for this field'),
-    // country: Yup.string().required('Enter a value for this field'),
-    // guardianFirstName: Yup.string().required("Enter the value for this field"),
-    // guardianLastName: Yup.string().required("Enter the value for this field"),
-    // guardianStreetAddress: Yup.string().required('Enter a value for this field'),
-    // guardianAddress: Yup.string().required('Enter a value for this field'),
-    // guardianCity: Yup.string().required('Enter a value for this field'),
-    // guardianState: Yup.string().required('Enter a value for this field'),
-    // guardianPincode: Yup.string().required('Enter a value for this field'),
-    // guardianCountry: Yup.string().required('Enter a value for this field'),
-    // guardianMobileNumber: Yup.string().min(10, 'You must enter at least 10 digits').required('Enter a number for this field'),
-    // guardianEmail: Yup.string().email('Enter a valid email address. (eg: yourname@domain.com)').required('Enter a value for this field.'),
-    // rollNumber: Yup.string().required('Enter a number for this field'),
-    // dateOfJoining: Yup.string().required('Choose a date'),
-    // courseFee: Yup.string().required('Enter a number for this field'),
-    // admissionFee: Yup.string().required('Enter a number for this field'),
-    // monthlyInstallment: Yup.string().required('Enter a number for this field'),
-    // captcha: Yup.string().required('Captcha is needed')
+    firstName: Yup.string().required("Enter the value for this field"),
+    email: Yup.string().email('Enter a valid email address. (eg: yourname@domain.com)').required('Enter a value for this field.'),
+    mobileNumber: Yup.string()
+        .matches(/^[0-9]+$/, {
+            message: 'Alphabets are not allowed. Please enter digits only.',
+            excludeEmptyString: true
+        })
+        .min(10, 'You must enter at least 10 digits')
+        .required('Enter a number for this field'),
+    otherMobileNumber: Yup.string()
+        .matches(/^[0-9]+$/, {
+            message: 'Alphabets are not allowed. Please enter digits only.',
+            excludeEmptyString: true
+        })
+        .min(10, 'You must enter at least 10 digits'),
+    streetAddress: Yup.string().required('Enter a value for this field'),
+    address: Yup.string().required('Enter a value for this field'),
+    city: Yup.string().required('Enter a value for this field'),
+    state: Yup.string().required('Enter a value for this field'),
+    pincode: Yup.string().required('Enter a value for this field'),
+    country: Yup.string().required('Enter a value for this field'),
+    guardianFirstName: Yup.string().required("Enter the value for this field"),
+    guardianLastName: Yup.string().required("Enter the value for this field"),
+    guardianStreetAddress: Yup.string().required('Enter a value for this field'),
+    guardianAddress: Yup.string().required('Enter a value for this field'),
+    guardianCity: Yup.string().required('Enter a value for this field'),
+    guardianState: Yup.string().required('Enter a value for this field'),
+    guardianPincode: Yup.string().required('Enter a value for this field'),
+    guardianCountry: Yup.string().required('Enter a value for this field'),
+    guardianMobileNumber: Yup.string()
+        .matches(/^[0-9]+$/, {
+            message: 'Alphabets are not allowed. Please enter digits only.',
+            excludeEmptyString: true
+        })
+        .min(10, 'You must enter at least 10 digits')
+        .required('Enter a number for this field'),
+    guardianEmail: Yup.string().email('Enter a valid email address. (eg: yourname@domain.com)').required('Enter a value for this field.'),
+    rollNumber: Yup.string().required('Enter a number for this field'),
+    dateOfJoining: Yup.string().required('Choose a date'),
+    courseFee: Yup.string().required('Enter a number for this field'),
+    admissionFee: Yup.string().required('Enter a number for this field'),
+    monthlyInstallment: Yup.string().required('Enter a number for this field'),
 });
 
 const countries = [
@@ -49,7 +66,12 @@ function AdmissionForm() {
     const [twelthCertificateImage, setTwelthCertificateImage] = useState('')
     const [graduationImage, setGraduationImage] = useState('');
     const [selectedCountry, setSelectedCountry] = useState(countries[0]);
-    const [guardianAdhaarImage, setGuardianAdhaarImage] = useState('')
+    const [guardianAdhaarImage, setGuardianAdhaarImage] = useState('');
+
+    const [captchaText, setCaptchaText] = useState('Please reload for the captcha');
+    const [reloadcaptcha, setReloadCaptcha] = useState('false');
+    const [signature, setSignature] = useState(''); // State to store the signature value
+
 
     const formik = useFormik({
         enableReinitialize: true,
@@ -97,50 +119,28 @@ function AdmissionForm() {
             admissionFee: '',
             monthlyInstallment: '',
             feeMode: '',
-            signature: '',
+            signature: signature,
             captcha: '',
         },
         validationSchema,
         onSubmit: async (values, formik) => {
-            console.log("mfrnf")
-            validateCaptcha()
-            console.log(selectedCountry)
-            console.log(values);
+            validateCaptcha(values)
         }
     });
 
     const { errors, values, touched, handleBlur, handleSubmit, setFieldValue, setFieldTouched } = formik;
-
-    const [captchaText, setCaptchaText] = useState('Please reload for the captcha');
-    const [reloadcaptcha, setReloadCaptcha] = useState('false');
-    const signatureRef = useRef();
-
-    const handleSave = () => {
-        const signatureDataUrl = signatureRef.current.toDataURL();
-        // Now you can use `signatureDataUrl` as the user's drawn signature
-        console.log(signatureDataUrl);
-    };
-
     // Validate the user's input
-    const validateCaptcha = async () => {
+    const validateCaptcha = async (values) => {
         const userInput = document.getElementById('captchaInput').value;
         const captchaText = document.getElementById('captchaText').textContent;
-
         if (userInput === captchaText) {
             console.log('userInput', userInput)
-            // alert('CAPTCHA is correct!'); // Replace with your validation logic
-            // Optionally, generate a new CAPTCHA for the next challenge
-            // setReloadCaptcha(true)
-            const nextCaptcha = userInput + 1;
-
-            // Set the 'captcha' field to the next value
-            formik.setFieldValue('captcha', nextCaptcha);
-            // await setFieldValue('captcha', captchaText + 1);
+            values.captcha = userInput;
+            console.log(values);
         } else {
             alert('CAPTCHA is incorrect. Please try again.');
-            setCaptchaText('')
-            // Optionally, refresh the CAPTCHA for another attempt
-            // displayCaptcha();
+            values.captcha = '';
+            console.log(values)
             setReloadCaptcha(true)
         }
     }
@@ -159,7 +159,7 @@ function AdmissionForm() {
                     <PersonalDetails formik={formik} setPhotoImage={setPhotoImage} setAdhaarImage={setAdhaarImage} setTenthCertificateImage={setTenthCertificateImage} setTwelthCertificateImage={setTwelthCertificateImage} setGraduationImage={setGraduationImage} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} countries={countries} />
                     <ParentDetails formik={formik} countries={countries} setGuardianAdhaarImage={setGuardianAdhaarImage} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} />
                     <CourseDetails formik={formik} />
-                    <FeeDetails formik={formik} reloadcaptcha={reloadcaptcha} captchaText={captchaText} setCaptchaText={setCaptchaText} />
+                    <FeeDetails setSignature={setSignature} formik={formik} reloadcaptcha={reloadcaptcha} captchaText={captchaText} setCaptchaText={setCaptchaText} />
                     <button type="submit" onClick={handleSubmit}>Submit</button>
                 </div>
             </div>

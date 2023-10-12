@@ -37,7 +37,7 @@ const ParentDetails = (props) => {
                 </div>
 
                 <div className="row address m-0 mb-4 g-3">
-                    <label for="inputAddress" class="ps-3 form-label col-3 text-start"><b>Your Address</b></label>
+                    <label htmlFor="inputAddress" className="ps-3 form-label col-3 text-start"><b>Your Address</b></label>
                     <div className='offset-2 col-7 p-0'>
                         <Address formik={formik} />
                         <p className='text-start fs-6 fw-lighter'>Address of your Guardian</p>
@@ -62,7 +62,7 @@ const ParentDetails = (props) => {
                                         </li>
                                     ))}
                                 </ul>
-                                <input type="number" className={`form-control ${formik.errors.guardianMobileNumber && formik.touched.guardianMobileNumber ? "border-danger" : ""}`} id="guardianMobileNumber" onBlur={formik.handleBlur('guardianMobileNumber')} value={formik.values.guardianMobileNumber} onChange={(e) => formik.setFieldValue('guardianMobileNumber', e.target.value)} aria-label="Text input with segmented dropdown button" />
+                                <input type="text" className={`form-control ${formik.errors.guardianMobileNumber && formik.touched.guardianMobileNumber ? "border-danger" : ""}`} id="guardianMobileNumber" onBlur={formik.handleBlur('guardianMobileNumber')} value={formik.values.guardianMobileNumber} onChange={(e) => formik.setFieldValue('guardianMobileNumber', e.target.value)} aria-label="Text input with segmented dropdown button" />
                             </div>
                             {formik.errors.guardianMobileNumber && formik.touched.guardianMobileNumber ? (
                                 <div className='text-danger text-start'>{formik.errors.guardianMobileNumber}</div>

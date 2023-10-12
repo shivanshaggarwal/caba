@@ -75,8 +75,11 @@ const PersonalDetails = (props) => {
                                         </li>
                                     ))}
                                 </ul>
-                                <input type="text" className="form-control" id="otherMobileNumber" value={formik.values.otherMobileNumber} onChange={(e) => formik.setFieldValue('otherMobileNumber', e.target.value)} aria-label="Text input with segmented dropdown button" />
+                                <input type="text" className={`form-control ${formik.errors.otherMobileNumber && formik.touched.otherMobileNumber ? "border-danger" : ""}`} id="otherMobileNumber" onBlur={formik.handleBlur('otherMobileNumber')} value={formik.values.otherMobileNumber} onChange={(e) => formik.setFieldValue('otherMobileNumber', e.target.value)} aria-label="Text input with segmented dropdown button" />
                             </div>
+                            {formik.errors.otherMobileNumber && formik.touched.otherMobileNumber ? (
+                                <div className='text-danger text-start'>{formik.errors.otherMobileNumber}</div>
+                            ) : null}
                             <p className='my-0 text-start fw-lighter fs-6 fst-italic '>Any Other Phone</p>
                         </div>
                     </div>
@@ -105,7 +108,7 @@ const PersonalDetails = (props) => {
                         setGraduationImage={setGraduationImage} value="graduation" info="Copy of Graduation Degree (if finished). JPG/PNG format less than 10 MB" />
                 </div>
                 <div className="row address m-0  mb-4 g-3">
-                    <label for="inputAddress" class="ps-3 form-label col-3 text-start"><b>Your Address</b></label>
+                    <label htmlFor="inputAddress" className="ps-3 form-label col-3 text-start"><b>Your Address</b></label>
                     <div className='offset-2 col-7 p-0'>
                         <Address formik={formik} />
                     </div>

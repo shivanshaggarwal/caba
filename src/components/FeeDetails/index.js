@@ -2,8 +2,13 @@ import React, { useEffect, useRef, useState } from 'react';
 import SignatureCanvas from 'react-signature-canvas';
 
 const FeeDetails = (props) => {
-    let { formik, captchaText, setCaptchaText, reloadcaptcha } = props;
+    let { formik, captchaText, setCaptchaText, reloadcaptcha, setSignature } = props;
     const signatureRef = useRef();
+
+    const handleBlur = () => {
+        const signatureDataUrl = signatureRef.current.toDataURL();
+        setSignature(signatureDataUrl); // Update the state with the signature data URL
+    };
 
     const handleClear = () => {
         signatureRef.current.clear();
@@ -39,7 +44,7 @@ const FeeDetails = (props) => {
         // captchaText.textContent = captcha;
     }
 
-    const [signature, setSignature] = useState('');
+    // const [signature, setSignature] = useState('');
 
     const handleReloadCaptcha = () => {
         displayCaptcha();
@@ -110,20 +115,15 @@ const FeeDetails = (props) => {
                     <label htmlFor="photo" className="text-start col-3"><b>Signature</b></label>
                     <div className="offset-2 col-7 p-0" style={{ width: '50%' }}>
                         <SignatureCanvas
-                            // onChange={(e) => setSignature('signature', signatureRef.current.toDataURL())}
-                            // onBlur={() => { formik.handleBlur('signature'); setSignature(signatureRef.current.toDataURL()) }}
-                            onClick={handleSave}
                             ref={signatureRef}
                             canvasProps={{ height: '150', className: 'signatureCanvas', style: { width: '100%', border: '2px solid #dee2e6' } }}
-                            onChange={handleSignatureChange} // Save on change
-                            onBlur={handleSignatureChange}
+                            onEnd={handleBlur}
                         />
                         <div>
                             <p style={{ color: 'blue', textDecoration: 'underline', display: 'flex', cursor: 'pointer' }} onClick={handleClear}>Clear</p>
                         </div>
                     </div>
                 </div>
-                dwkljn{signature}
                 <div id="captchaContainer" className="row m-0 mb-4">
                     <label htmlFor="photo" className="text-start col-3"><b>Verification Code</b></label>
                     <div className="offset-2 col-4 p-2" style={{ display: 'flex', flexDirection: 'column', textAlign: 'start', border: '1px solid #dee2e6', backgroundColor: '#efebeb' }}>
@@ -131,7 +131,7 @@ const FeeDetails = (props) => {
                         <div style={{ display: 'flex' }}>
                             <input style={{ borderRadius: 0, width: '75%' }} className="form-control" type="text" id="captchaInput" placeholder="Enter CAPTCHA" />
                             {/* <span onClick={handleReloadCaptcha} className='ms-3 material-symbols-outlined' style={{ cursor: 'pointer' }}></span> */}
-                            <span onClick={handleReloadCaptcha} class="ms-3 mt-1 material-symbols-outlined" style={{ cursor: 'pointer' }}>
+                            <span onClick={handleReloadCaptcha} className="ms-3 mt-1 material-symbols-outlined" style={{ cursor: 'pointer' }}>
                                 move
                             </span>
                         </div>

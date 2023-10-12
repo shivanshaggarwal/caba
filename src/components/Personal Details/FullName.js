@@ -28,7 +28,7 @@ function FullName(props) {
                     <label htmlFor="lastName">Last</label>
                 </div>
             </div>
-            {(formik.errors.firstName && formik.touched.firstName)  ? (
+            {(formik.errors.firstName && formik.touched.firstName) ? (
                 <div className='text-danger text-start'>{formik.errors.firstName}</div>
             ) : null}
         </div>
