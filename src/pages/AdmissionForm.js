@@ -165,8 +165,8 @@ function AdmissionForm() {
     return (
         <div className='container'>
             <div className="card">
-                <div className="card-header">Caba Innovatives Admission Form</div>
-                <div className="card-subtitle">Student Admission Form</div>
+                <div className="card-header fs-1">Caba Innovatives Admission Form</div>
+                <div className="card-subtitle m-4 fs-2 fw-light">Student Admission Form</div>
                 <div className="card-body">
                     <PersonalDetails formik={formik} setPhotoImage={setPhotoImage} setAdhaarImage={setAdhaarImage} setTenthCertificateImage={setTenthCertificateImage} setTwelthCertificateImage={setTwelthCertificateImage} setGraduationImage={setGraduationImage} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} countries={countries} />
                     <ParentDetails formik={formik} countries={countries} setGuardianAdhaarImage={setGuardianAdhaarImage} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} />

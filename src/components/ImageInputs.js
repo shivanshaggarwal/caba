@@ -66,12 +66,11 @@
          canvas.width = videoRef.current.videoWidth;
          canvas.height = videoRef.current.videoHeight;
          context.drawImage(videoRef.current, 0, 0, canvas.width, canvas.height);
-
+         
          const imageDataURL = canvas.toDataURL('image/png');
          try{
              if (value == "photo") {
                  setPhotoImage(imageDataURL);
-                 console.log(value)
              } else if (value == "adhaar") {
                  setAdhaarImage(imageDataURL)
              } else if (value == "tenthCertificate") {
