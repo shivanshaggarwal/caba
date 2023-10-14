@@ -33,8 +33,11 @@ const ImageInputs = (props) => {
                     setAdhaarImage(file)
                 } else if (value == "tenthCertificate") {
                     setTenthCertificateImage(file)
+                    console.log(file)
+
                 } else if (value == "twelthCertificate") {
                     setTwelthCertificateImage(file)
+                    console.log(file)
                 } else if (value == "graduation") {
                     setGraduationImage(file)
                 } else if (value == "guardianAdhaar") {
@@ -42,9 +45,8 @@ const ImageInputs = (props) => {
                 } else {
                     handleClose();
                 }
-                throw "Empty Image"
             } catch (error) {
-                console.log(error)
+                console.error(error)
             }
         } else {
             setSelectedFile(null);

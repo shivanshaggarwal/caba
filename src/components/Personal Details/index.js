@@ -99,7 +99,7 @@ const PersonalDetails = (props) => {
                 <div className="row twelth m-0  mb-4">
                     <label htmlFor="photo" className="text-start col-3"><b>12th Certificate</b></label>
                     <ImageInputs idOfImage='twelthCertificate'
-                        setT welthCertificateImage={setTwelthCertificateImage}
+                        setTwelthCertificateImage={setTwelthCertificateImage}
                         value="twelthCertificate" info="12th Certificate Copy Upload. JPG/PNG format less than 10 MB" />
                 </div>
                 <div className="row graduation m-0  mb-4">
