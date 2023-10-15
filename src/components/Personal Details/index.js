@@ -12,7 +12,7 @@ const PersonalDetails = (props) => {
     return (
         <>
             <div className="row personalDetails">
-                <div className="card-title text-start col-3 text-primary "><h3>Personal Details</h3></div><hr />
+                <div className="card-title text-start col-5 text-primary "><h3>Personal Details</h3></div><hr />
                 <div className="row photo m-0 mb-4">
                     <label htmlFor="photo" className="text-start col-3"><b>Your Photo</b></label>
                     <ImageInputs idOfImage='photo' setPhotoImage={setPhotoImage} value="photo" info="Passport Size Photo in JPG format - JPG/PNG format less than 5 MB" />

@@ -11,7 +11,7 @@ const ParentDetails = (props) => {
     return (
         <>
             <div className="row parentDetails">
-                <div className="card-title text-start col-3 text-success ">
+                <div className="card-title text-start col-5 text-success ">
                     <h4>Parent / Guardian Details</h4>
                 </div>
                 <hr />
