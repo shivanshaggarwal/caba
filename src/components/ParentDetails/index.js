@@ -17,7 +17,7 @@ const ParentDetails = (props) => {
                 <hr />
                 <div className="row fullname m-0 mb-4">
                     <label htmlFor="fullName" className="text-start col-3">
-                        <b>Guardian Name <span className='text-danger'>*</span></b>
+                        <b>{formik.values.relationShip? `${formik.values.relationShip}'s`: "Guardian's"} Name <span className='text-danger'>*</span></b>
                     </label>
                     <FullName formik={formik} />
                 </div>
@@ -37,15 +37,15 @@ const ParentDetails = (props) => {
                 </div>
 
                 <div className="row address m-0 mb-4 g-3">
-                    <label htmlFor="inputAddress" className="ps-3 form-label col-3 text-start"><b>Your Address</b></label>
+                    <label htmlFor="inputAddress" className="ps-3 form-label col-3 text-start"><b>{formik.values.relationShip? `${formik.values.relationShip}'s`: "Guardian's"} Address</b></label>
                     <div className='offset-2 col-7 p-0'>
                         <Address formik={formik} />
-                        <p className='text-start fs-6 fw-lighter'>Address of your Guardian</p>
+                        <p className='text-start fs-6 fw-lighter'>Address of your {formik.values.relationShip? `${formik.values.relationShip}'s`: "Guardian's"}</p>
                     </div>
                 </div>
 
                 <div className="row phone m-0 mb-4">
-                    <label htmlFor="photo" className="text-start col-3"><b>Guardian Phone</b></label>
+                    <label htmlFor="photo" className="text-start col-3"><b>{formik.values.relationShip? `${formik.values.relationShip}'s`: "Guardian's"} Phone</b></label>
                     <div className="offset-2 col-4 p-0">
                         {/* <PhoneInput info="Father / Mother Phone" /> */}
                         <div >
@@ -67,13 +67,13 @@ const ParentDetails = (props) => {
                             {formik.errors.guardianMobileNumber && formik.touched.guardianMobileNumber ? (
                                 <div className='text-danger text-start'>{formik.errors.guardianMobileNumber}</div>
                             ) : null}
-                            <p className='my-0 text-start fw-lighter fs-6 fst-italic '>Your Mobile</p>
+                            <p className='my-0 text-start fw-lighter fs-6 fst-italic '>Your {formik.values.relationShip? `${formik.values.relationShip}'s`: "Guardian's"} Mobile</p>
                         </div>
                     </div>
                 </div>
 
                 <div className="row email m-0 mb-4">
-                    <label htmlFor="guardianEmail" className="text-start col-3"><b>Guardian Email</b></label>
+                    <label htmlFor="guardianEmail" className="text-start col-3"><b>{formik.values.relationShip? `${formik.values.relationShip}'s`: "Guardian's"} Email</b></label>
                     <div className="offset-2 col-4 p-0">
                         <input type="text" className={`form-control ${formik.errors.guardianEmail && formik.touched.guardianEmail ? "border-danger" : ""}`} id="guardianEmail" onBlur={formik.handleBlur('guardianEmail')} value={formik.values.guardianEmail} onChange={(e) => formik.setFieldValue('guardianEmail', e.target.value)} />
                         {formik.errors.guardianEmail && formik.touched.guardianEmail ? (
@@ -83,8 +83,8 @@ const ParentDetails = (props) => {
                 </div>
 
                 <div className="row guardianAdhar mx-0  mb-4">
-                    <label htmlFor="photo" className="text-start col-3"><b>Guardian Aadhar</b></label>
-                    <ImageInputs idOfImage='guardianAdhaar' setGuardianAdhaarImage={setGuardianAdhaarImage} value="guardianAdhaar" info="Copy of Father / Mother Aadhaar Copy. Should be JPG format less than 5 MB" />
+                    <label htmlFor="photo" className="text-start col-3"><b>{formik.values.relationShip? `${formik.values.relationShip}'s`: "Guardian's"} Aadhar</b></label>
+                    <ImageInputs idOfImage='guardianAdhaar' setGuardianAdhaarImage={setGuardianAdhaarImage} value="guardianAdhaar" info={`Copy of ${formik.values.relationShip? `${formik.values.relationShip}'s`: "Guardian's"} Aadhaar Copy. Should be JPG format less than 5 MB`} />
                 </div>
             </div>
         </>

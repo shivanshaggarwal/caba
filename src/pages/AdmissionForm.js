@@ -9,20 +9,21 @@ import PersonalDetails from '../components/Personal Details'
 import ParentDetails from '../components/ParentDetails'
 import CourseDetails from '../components/CourseDetails'
 import FeeDetails from '../components/FeeDetails'
+import dividerImage from './divider-2461548_640.png';
 
 const validationSchema = Yup.object().shape({
     firstName: Yup.string().required("Enter the value for this field"),
     email: Yup.string().email('Enter a valid email address. (eg: yourname@domain.com)').required('Enter a value for this field.'),
     mobileNumber: Yup.string()
         .matches(/^[0-9]+$/, {
-            message: 'Alphabets are not allowed. Please enter digits only.',
+            message: 'Enter numbers only',
             excludeEmptyString: true
         })
         .min(10, 'You must enter at least 10 digits')
         .required('Enter a number for this field'),
     otherMobileNumber: Yup.string()
         .matches(/^[0-9]+$/, {
-            message: 'Alphabets are not allowed. Please enter digits only.',
+            message: 'Enter numbers only',
             excludeEmptyString: true
         })
         .min(10, 'You must enter at least 10 digits'),
@@ -42,7 +43,7 @@ const validationSchema = Yup.object().shape({
     guardianCountry: Yup.string().required('Enter a value for this field'),
     guardianMobileNumber: Yup.string()
         .matches(/^[0-9]+$/, {
-            message: 'Alphabets are not allowed. Please enter digits only.',
+            message: 'Enter numbers only',
             excludeEmptyString: true
         })
         .min(10, 'You must enter at least 10 digits')
@@ -151,20 +152,21 @@ function AdmissionForm() {
     // };
 
     return (
-        <div className='container w-50'>
-            <div className="card">
-                <div className="card-header fs-1">Caba Innovatives Admission Form</div>
-                <div className="card-subtitle m-4 fs-2 fw-light">Student Admission Form</div>
-                <div className="card-body">
-                    <PersonalDetails formik={formik} setPhotoImage={setPhotoImage} setAdhaarImage={setAdhaarImage} setTenthCertificateImage={setTenthCertificateImage} setTwelthCertificateImage={setTwelthCertificateImage} setGraduationImage={setGraduationImage} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} countries={countries} />
-                    <ParentDetails formik={formik} countries={countries} setGuardianAdhaarImage={setGuardianAdhaarImage} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} />
-                    <CourseDetails formik={formik} />
-                    <FeeDetails setSignature={setSignature} formik={formik} reloadcaptcha={reloadcaptcha} captchaText={captchaText} setCaptchaText={setCaptchaText} />
-                    <button type="submit" onClick={handleSubmit}>Submit</button>
+        
+            <div className='container col-12 col-md-6'>
+                <div className="card">
+                    <div className="card-header fs-1">Caba Innovatives Admission Form</div>
+                    <div className="card-subtitle m-4 fs-2 fw-light">Student Admission Form</div>
+                    <div className="card-body">
+                        <PersonalDetails formik={formik} setPhotoImage={setPhotoImage} setAdhaarImage={setAdhaarImage} setTenthCertificateImage={setTenthCertificateImage} setTwelthCertificateImage={setTwelthCertificateImage} setGraduationImage={setGraduationImage} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} countries={countries} />
+                        <ParentDetails formik={formik} countries={countries} setGuardianAdhaarImage={setGuardianAdhaarImage} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} />
+                        <CourseDetails formik={formik} />
+                        <FeeDetails setSignature={setSignature} formik={formik} reloadcaptcha={reloadcaptcha} captchaText={captchaText} setCaptchaText={setCaptchaText} />
+                        {/* <button type="submit" onClick={handleSubmit}>Submit</button> */}
+                        <button type="submit" onClick={handleSubmit} class="btn btn-primary mb-3">Submit</button>
+                    </div>
                 </div>
-            </div>
-        </div>
-
+            </div>     
     )
 }
 

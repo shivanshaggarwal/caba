@@ -13,7 +13,7 @@ const CourseDetails = (props) => {
                 <div className="row rollNumber m-0 mb-4">
                     <label htmlFor="rollNumber" className="text-start col-3"><b>Roll Number</b></label>
                     <div className="offset-2 col-4 p-0">
-                        <input type="number" className={`form-control ${formik.errors.rollNumber && formik.touched.rollNumber ? "border-danger" : ""}`} id="rollNumber" onBlur={formik.handleBlur('rollNumber')} value={formik.values.rollNumber} onChange={(e) => formik.setFieldValue('rollNumber', e.target.value)} placeholder='Official Use Only' />
+                        <input type="number" className={`form-control ${formik.errors.rollNumber && formik.touched.rollNumber ? "border-danger" : ""}`} id="rollNumber" onBlur={formik.handleBlur('rollNumber')} value={formik.values.rollNumber} onChange={(e) => formik.setFieldValue('rollNumber', e.target.value)} placeholder='Official Use Only' disabled/>
                         {formik.errors.rollNumber && formik.touched.rollNumber ? (
                             <div className='text-danger text-start'>{formik.errors.rollNumber}</div>
                         ) : null}
@@ -22,7 +22,7 @@ const CourseDetails = (props) => {
                 <div className="row date m-0 mb-4">
                     <label htmlFor="dateOfJoining" className="text-start col-3"><b>Date Of Joining</b></label>
                     <div className="offset-2 col-4 p-0">
-                        <input type="date" className={`form-control ${formik.errors.dateOfJoining && formik.touched.dateOfJoining ? "border-danger" : ""}`} id="dateOfJoining" onBlur={formik.handleBlur('dateOfJoining')} value={formik.values.dateOfJoining} onChange={(e) => formik.setFieldValue('dateOfJoining', e.target.value)} placeholder='Official Use Only' />
+                        <input disabled type="date" className={`form-control ${formik.errors.dateOfJoining && formik.touched.dateOfJoining ? "border-danger" : ""}`} id="dateOfJoining" onBlur={formik.handleBlur('dateOfJoining')} value={formik.values.dateOfJoining} onChange={(e) => formik.setFieldValue('dateOfJoining', e.target.value)} placeholder='Official Use Only' />
                         {formik.errors.dateOfJoining && formik.touched.dateOfJoining ? (
                             <div className='text-danger text-start'>{formik.errors.dateOfJoining}</div>
                         ) : null}
@@ -31,7 +31,7 @@ const CourseDetails = (props) => {
                 <div className="row trainingType m-0 mb-4">
                     <label htmlFor="trainingType" className="text-start col-3"><b>Training Type</b></label>
                     <div className="offset-2 col-4 p-0">
-                        <select id="trainingType" className="form-select p-1" value={formik.values.trainingType} onChange={(e) => formik.setFieldValue('trainingType', e.target.value)} aria-label=''>
+                        <select disabled id="trainingType" className="form-select p-1" value={formik.values.trainingType} onChange={(e) => formik.setFieldValue('trainingType', e.target.value)} aria-label=''>
                             <option selected className='fs-6 fw-lighter'>-Select-</option>
                             <option>Online</option>
                             <option>Offline</option>
@@ -45,7 +45,7 @@ const CourseDetails = (props) => {
                         <b>Course Opted</b>
                     </label>
                     <div className="offset-2 col-4 p-0">
-                        <select id="courseOpted" className="form-select p-1" value={formik.values.courseOpted} onChange={(e) => formik.setFieldValue('courseOpted', e.target.value)} aria-label=''>
+                        <select disabled id="courseOpted" className="form-select p-1" value={formik.values.courseOpted} onChange={(e) => formik.setFieldValue('courseOpted', e.target.value)} aria-label=''>
                             <option selected className='fs-6 fw-lighter'>-Select-</option>
                             <option>6 Months Graphic Design</option>
                             <option>6 Months Video Editing</option>
@@ -69,7 +69,7 @@ const CourseDetails = (props) => {
                 <div className="row daysOpted m-0 mb-4">
                     <label htmlFor="daysOpted" className="text-start col-3"><b>Days Opted</b></label>
                     <div className="offset-2 col-4 p-0">
-                        <select id="daysOpted" className="form-select p-1" value={formik.values.daysOpted} onChange={(e) => formik.setFieldValue('daysOpted', e.target.value)} aria-label=''>
+                        <select disabled id="daysOpted" className="form-select p-1" value={formik.values.daysOpted} onChange={(e) => formik.setFieldValue('daysOpted', e.target.value)} aria-label=''>
                             <option selected className='fs-6 fw-lighter'>-Select-</option>
                             <option>Mon-Wed-Fri</option>
                             <option>Tue-Thurs-Sat</option>
@@ -82,7 +82,7 @@ const CourseDetails = (props) => {
                 <div className="row bacth m-0 mb-4">
                     <label htmlFor="batch" className="text-start col-3"><b>Batch</b></label>
                     <div className="offset-2 col-4 p-0">
-                        <select id="batch" className="form-select p-1" value={formik.values.batch} onChange={(e) => formik.setFieldValue('batch', e.target.value)} aria-label=''>
+                        <select disabled id="batch" className="form-select p-1" value={formik.values.batch} onChange={(e) => formik.setFieldValue('batch', e.target.value)} aria-label=''>
                             <option selected className='fs-6 fw-lighter'>-Select-</option>
                             <option>8:00 AM - 10:00 AM</option>
                             <option>10:00 AM - 10:00 AM</option>
