@@ -9,6 +9,10 @@ import PersonalDetails from '../components/Personal Details'
 import ParentDetails from '../components/ParentDetails'
 import CourseDetails from '../components/CourseDetails'
 import FeeDetails from '../components/FeeDetails'
+import borderImage from '../components/Images/border2.jpg'
+import { Modal, Button, Table } from "react-bootstrap";
+import { fireEvent } from '@testing-library/react'
+
 
 
 const validationSchema = Yup.object().shape({
@@ -56,9 +60,12 @@ const validationSchema = Yup.object().shape({
     monthlyInstallment: Yup.string().required('Enter a number for this field'),
 });
 
+
 const countries = [
     { code: '+91', name: 'India', flag: require('../india.png') },
 ];
+
+
 
 function AdmissionForm() {
     const [photoImage, setPhotoImage] = useState('')
@@ -72,8 +79,9 @@ function AdmissionForm() {
     const [captchaText, setCaptchaText] = useState('Please reload for the captcha');
     const [reloadcaptcha, setReloadCaptcha] = useState('false');
     const [signature, setSignature] = useState(''); // State to store the signature value
-
-
+    const [show, setShow] = useState(false);
+    const handleShow = () => setShow(true);
+    const handleClose = () => setShow(false);
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: {
@@ -153,20 +161,59 @@ function AdmissionForm() {
 
     return (
 
-        <div className='container col-12 col-sm-8 p-0'>
+        <div className='container col-12 col-sm-6 p-0'>
             <div className="card p-0">
-                <div className="card-header fs-1">Caba Innovatives Admission Form</div>
-                <div className="card-subtitle m-4 fs-2 fw-light">Student Admission Form</div>
-                <img src='../components/Images/border.jpg' alt="" style={{ height: '200px', width: '400px' }} />
+                <div className="card-header fs-1 border-bottom-0 bg-light">
+                    Caba Innovatives Admission Form
+                    <p className='fs-4 fw-lighter'>Student Admission Form</p>
+                    <img src={borderImage} alt="" style={{ width: '100%' }} />
+                </div>
+                {/* <div className="card-subtitle m-4 fs-2 fw-light">Student Admission Form</div> */}
+                {/* <img src='../components/Images/border.jpg' alt="" style={{ height: '200px', width: '300px' }} /> */}
                 <div className="card-body">
                     <PersonalDetails formik={formik} setPhotoImage={setPhotoImage} setAdhaarImage={setAdhaarImage} setTenthCertificateImage={setTenthCertificateImage} setTwelthCertificateImage={setTwelthCertificateImage} setGraduationImage={setGraduationImage} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} countries={countries} />
                     <ParentDetails formik={formik} countries={countries} setGuardianAdhaarImage={setGuardianAdhaarImage} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} />
                     <CourseDetails formik={formik} />
                     <FeeDetails setSignature={setSignature} formik={formik} reloadcaptcha={reloadcaptcha} captchaText={captchaText} setCaptchaText={setCaptchaText} />
                     {/* <button type="submit" onClick={handleSubmit}>Submit</button> */}
-                    <button type="submit" onClick={handleSubmit} className="btn btn-primary mb-3">Submit</button>
+                    <button type="submit" onClick={handleShow} className="btn btn-primary m-3">Review</button>
+                    <button type="submit" onClick={handleSubmit} className="btn btn-primary m-3">Submit</button>
                 </div>
             </div>
+
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Form Summary</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Table striped bordered hover>
+                        <tbody>
+                            <tr>
+                                <td>Your Photo</td>
+                                <td>{formik.firstName}</td>
+                                
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>Jacob</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>@twitter</td>
+                            </tr>
+                        </tbody>
+                    </Table>
+
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={handleClose}>
+                        Save Changes
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     )
 }
