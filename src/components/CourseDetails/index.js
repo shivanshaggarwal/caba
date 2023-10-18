@@ -6,14 +6,14 @@ const CourseDetails = (props) => {
     return (
         <>
             <div className="row courseDetails p-0">
-                <div className="card-title text-start col-3 text-danger ">
+                <div className="card-title text-start col-12 text-danger ">
                     <h4>Course Details</h4>
                 </div>
                 <hr className='mb-0'/>
                 <div className="bg-secondary-subtle m-0 mt-1 mb-2 p-2">
                     <div className="row rollNumber m-0 mb-4">
-                        <label htmlFor="rollNumber" className="text-start col-3"><b>Roll Number</b></label>
-                        <div className="offset-2 col-4 p-0">
+                        <label htmlFor="rollNumber" className="text-start col-12 mb-2 ps-1 col-sm-3"><b>Roll Number</b></label>
+                        <div className="col-12 offset-sm-2 col-sm-4 p-0">
                             <input type="number" className={`form-control ${formik.errors.rollNumber && formik.touched.rollNumber ? "border-danger" : ""}`} id="rollNumber" onBlur={formik.handleBlur('rollNumber')} value={formik.values.rollNumber} onChange={(e) => formik.setFieldValue('rollNumber', e.target.value)} placeholder='Official Use Only' disabled/>
                             {formik.errors.rollNumber && formik.touched.rollNumber ? (
                                 <div className='text-danger text-start'>{formik.errors.rollNumber}</div>
@@ -21,8 +21,8 @@ const CourseDetails = (props) => {
                         </div>
                     </div>
                     <div className="row date m-0 mb-4">
-                        <label htmlFor="dateOfJoining" className="text-start col-3"><b>Date Of Joining</b></label>
-                        <div className="offset-2 col-4 p-0">
+                        <label htmlFor="dateOfJoining" className="text-start col-12 mb-2 ps-1 col-sm-3"><b>Date Of Joining</b></label>
+                        <div className="col-12 offset-sm-2 col-sm-4 p-0">
                             <input disabled type="date" className={`form-control ${formik.errors.dateOfJoining && formik.touched.dateOfJoining ? "border-danger" : ""}`} id="dateOfJoining" onBlur={formik.handleBlur('dateOfJoining')} value={formik.values.dateOfJoining} onChange={(e) => formik.setFieldValue('dateOfJoining', e.target.value)} placeholder='Official Use Only' />
                             {formik.errors.dateOfJoining && formik.touched.dateOfJoining ? (
                                 <div className='text-danger text-start'>{formik.errors.dateOfJoining}</div>
@@ -30,8 +30,8 @@ const CourseDetails = (props) => {
                         </div>
                     </div>
                     <div className="row trainingType m-0 mb-4">
-                        <label htmlFor="trainingType" className="text-start col-3"><b>Training Type</b></label>
-                        <div className="offset-2 col-4 p-0">
+                        <label htmlFor="trainingType" className="text-start col-12 mb-2 ps-1 col-sm-3"><b>Training Type</b></label>
+                        <div className="col-12 offset-sm-2 col-sm-4 p-0">
                             <select disabled id="trainingType" className="form-select p-1" value={formik.values.trainingType} onChange={(e) => formik.setFieldValue('trainingType', e.target.value)} aria-label=''>
                                 <option selected className='fs-6 fw-lighter'>-Select-</option>
                                 <option>Online</option>
@@ -42,10 +42,10 @@ const CourseDetails = (props) => {
                     </div>
 
                     <div className="row courseOpted m-0 mb-4">
-                        <label htmlFor="courseOpted" className="text-start col-3">
+                        <label htmlFor="courseOpted" className="text-start col-12 mb-2 ps-1 col-sm-3">
                             <b>Course Opted</b>
                         </label>
-                        <div className="offset-2 col-4 p-0">
+                        <div className="col-12 offset-sm-2 col-sm-4 p-0">
                             <select disabled id="courseOpted" className="form-select p-1" value={formik.values.courseOpted} onChange={(e) => formik.setFieldValue('courseOpted', e.target.value)} aria-label=''>
                                 <option selected className='fs-6 fw-lighter'>-Select-</option>
                                 <option>6 Months Graphic Design</option>
@@ -68,8 +68,8 @@ const CourseDetails = (props) => {
                     </div>
 
                     <div className="row daysOpted m-0 mb-4">
-                        <label htmlFor="daysOpted" className="text-start col-3"><b>Days Opted</b></label>
-                        <div className="offset-2 col-4 p-0">
+                        <label htmlFor="daysOpted" className="text-start col-12 mb-2 ps-1 col-sm-3"><b>Days Opted</b></label>
+                        <div className="col-12 offset-sm-2 col-sm-4 p-0">
                             <select disabled id="daysOpted" className="form-select p-1" value={formik.values.daysOpted} onChange={(e) => formik.setFieldValue('daysOpted', e.target.value)} aria-label=''>
                                 <option selected className='fs-6 fw-lighter'>-Select-</option>
                                 <option>Mon-Wed-Fri</option>
@@ -81,8 +81,8 @@ const CourseDetails = (props) => {
                     </div>
 
                     <div className="row bacth m-0 mb-4">
-                        <label htmlFor="batch" className="text-start col-3"><b>Batch</b></label>
-                        <div className="offset-2 col-4 p-0">
+                        <label htmlFor="batch" className="text-start col-12 mb-2 ps-1 col-sm-3"><b>Batch</b></label>
+                        <div className="col-12 offset-sm-2 col-sm-4 p-0">
                             <select disabled id="batch" className="form-select p-1" value={formik.values.batch} onChange={(e) => formik.setFieldValue('batch', e.target.value)} aria-label=''>
                                 <option selected className='fs-6 fw-lighter'>-Select-</option>
                                 <option>8:00 AM - 10:00 AM</option>

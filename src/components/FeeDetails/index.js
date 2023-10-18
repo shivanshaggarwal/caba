@@ -66,14 +66,14 @@ const FeeDetails = (props) => {
     return (
         <>
             <div className="row feeDetails">
-                <div className="card-title text-start col-3 text-danger " >
+                <div className="card-title text-start col-12 text-danger " >
                     <h4>Fee Details</h4>
                 </div>
                 <hr style={{border: "2px dashed", margin: "0px"}}/>
                 <div className="bg-secondary-subtle m-0 mt-1 mb-1 p-2">
                     <div className="row m-0 mb-4">
-                        <label htmlFor="" className="text-start col-3"><b>Total Course Fee</b></label>
-                        <div className="offset-2 col-4 p-0">
+                        <label htmlFor="" className="text-start col-12 mb-2 ps-1 col-sm-3"><b>Total Course Fee</b></label>
+                        <div className="offset-sm-2 col-sm-4 p-0">
                             <div className='d-flex align-items-center'>
                                 <input disabled type="text" className={`form-control ${formik.errors.courseFee && formik.touched.courseFee ? "border-danger" : ""}`} id="courseFee" onBlur={formik.handleBlur('courseFee')} value={formik.values.courseFee} onChange={(e) => formik.setFieldValue('courseFee', e.target.value)} />
                                 <h5 className='ms-3'>INR</h5>
@@ -84,8 +84,8 @@ const FeeDetails = (props) => {
                         </div>
                     </div>
                     <div className="row m-0 mb-4">
-                        <label htmlFor="" className="text-start col-3"><b>Admission Fee</b></label>
-                        <div className="offset-2 col-7 p-0">
+                        <label htmlFor="" className="text-start col-12 mb-2 ps-1 col-sm-3"><b>Admission Fee</b></label>
+                        <div className="offset-sm-2 col-sm-7 p-0">
                             <input disabled type="text" className={`form-control ${formik.errors.admissionFee && formik.touched.admissionFee ? "border-danger" : ""}`} id="admissionFee" onBlur={formik.handleBlur('admissionFee')} value={formik.values.admissionFee} onChange={(e) => formik.setFieldValue('admissionFee', e.target.value)} />
                             {formik.errors.admissionFee && formik.touched.admissionFee ? (
                                 <div className='text-danger text-start'>{formik.errors.admissionFee}</div>
@@ -93,8 +93,8 @@ const FeeDetails = (props) => {
                         </div>
                     </div>
                     <div className="row m-0 mb-4">
-                        <label htmlFor="photo" className="text-start col-3"><b>Montly Installment</b></label>
-                        <div className="offset-2 col-7 p-0">
+                        <label htmlFor="photo" className="text-start col-12 mb-2 ps-1 col-sm-3"><b>Montly Installment</b></label>
+                        <div className="offset-sm-2 col-sm-7 p-0">
                             <input disabled type="text" className={`form-control ${formik.errors.monthlyInstallment && formik.touched.monthlyInstallment ? "border-danger" : ""}`} id="monthlyInstallment" onBlur={formik.handleBlur('monthlyInstallment')} value={formik.values.monthlyInstallment} onChange={(e) => formik.setFieldValue('monthlyInstallment', e.target.value)} />
                             {formik.errors.monthlyInstallment && formik.touched.monthlyInstallment ? (
                                 <div className='text-danger text-start'>{formik.errors.monthlyInstallment}</div>
@@ -116,8 +116,8 @@ const FeeDetails = (props) => {
                 </div>
                 <hr style={{border: "2px dashed"}}/>
                 <div className="row m-0 mb-4">
-                    <label htmlFor="photo" className="text-start col-3"><b>Signature</b></label>
-                    <div className="offset-2 col-7 p-0" style={{ width: '50%' }}>
+                    <label htmlFor="photo" className="text-start col-12 mb-2 ps-1 col-sm-3"><b>Signature</b></label>
+                    <div className="w-100 offset-sm-2 col-sm-7 p-0">
                         <SignatureCanvas
                             ref={signatureRef}
                             canvasProps={{ height: '150', className: 'signatureCanvas', style: { width: '100%', border: '2px solid #dee2e6' } }}
@@ -129,8 +129,8 @@ const FeeDetails = (props) => {
                     </div>
                 </div>
                 <div id="captchaContainer" className="row m-0 mb-4">
-                    <label htmlFor="photo" className="text-start col-3"><b>Verification Code</b></label>
-                    <div className="offset-2 col-4 p-2" style={{ display: 'flex', flexDirection: 'column', textAlign: 'start', border: '1px solid #dee2e6', backgroundColor: '#efebeb' }}>
+                    <label htmlFor="photo" className="text-start col-12 mb-2 ps-1 col-sm-3"><b>Verification Code</b></label>
+                    <div className="col-12 offset-sm-2 col-sm-4 p-2" style={{ display: 'flex', flexDirection: 'column', textAlign: 'start', border: '1px solid #dee2e6', backgroundColor: '#efebeb' }}>
                         <p>Enter the text in the box below</p>
                         <div style={{ display: 'flex' }}>
                             <input style={{ borderRadius: 0, width: '75%' }} className="form-control" type="text" id="captchaInput" placeholder="Enter CAPTCHA" />

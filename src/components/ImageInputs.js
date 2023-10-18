@@ -124,12 +124,12 @@ const ImageInputs = (props) => {
     };
 
     return (
-        <div className="offset-2 col-7 photocontainer p-0">
+        <div className="col-12 col-sm-6  photocontainer p-0">
             <div className="col-12 bg-light rounded-2">
                 <div className='row m-0' style={{ border: divBorderHovered ? '1px dashed gray' : '' }} onMouseEnter={() => setDivBorderHovered(true)}
                     onMouseLeave={() => setDivBorderHovered(false)}>
                     <div
-                        className="col-12 col-sm-6 p-3 fs-6 fw-lighter"
+                        className="col-6 col-sm-6 p-3 fs-6 fw-lighter"
                         htmlFor={idOfImage}
                         onClick={() => document.getElementById(idOfImage).click()}
                     >
@@ -138,10 +138,9 @@ const ImageInputs = (props) => {
                             type="file" name="" id={idOfImage}
                             className='d-none' onChange={handleFileChange}
                             accept=".jpg, .jpeg, .png"
-
                         />
                     </div>
-                    <div className='col-12 col-sm-6'>
+                    <div className='col-6 col-sm-3'>
                         <span
                             onClick={() => document.getElementById(idOfImage).click()}
                             className="material-symbols-outlined m-2 bg-secondary-subtle p-2 rounded-circle outline-none"

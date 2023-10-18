@@ -153,7 +153,7 @@ function AdmissionForm() {
 
     return (
         
-            <div className='container col-12 col-md-6 p-0'>
+            <div className='container col-12 col-sm-8 p-0'>
                 <div className="card p-0">
                     <div className="card-header fs-1">Caba Innovatives Admission Form</div>
                     <div className="card-subtitle m-4 fs-2 fw-light">Student Admission Form</div>
