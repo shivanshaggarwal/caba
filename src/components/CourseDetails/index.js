@@ -96,6 +96,7 @@ const CourseDetails = (props) => {
                         </div>
                     </div>
                 </div>
+                <hr />
             </div>
         </>
     )
