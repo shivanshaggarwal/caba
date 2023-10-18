@@ -152,21 +152,21 @@ function AdmissionForm() {
     // };
 
     return (
-        
-            <div className='container col-12 col-sm-8 p-0'>
-                <div className="card p-0">
-                    <div className="card-header fs-1">Caba Innovatives Admission Form</div>
-                    <div className="card-subtitle m-4 fs-2 fw-light">Student Admission Form</div>
-                    <div className="card-body">
-                        <PersonalDetails formik={formik} setPhotoImage={setPhotoImage} setAdhaarImage={setAdhaarImage} setTenthCertificateImage={setTenthCertificateImage} setTwelthCertificateImage={setTwelthCertificateImage} setGraduationImage={setGraduationImage} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} countries={countries} />
-                        <ParentDetails formik={formik} countries={countries} setGuardianAdhaarImage={setGuardianAdhaarImage} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} />
-                        <CourseDetails formik={formik} />
-                        <FeeDetails setSignature={setSignature} formik={formik} reloadcaptcha={reloadcaptcha} captchaText={captchaText} setCaptchaText={setCaptchaText} />
-                        {/* <button type="submit" onClick={handleSubmit}>Submit</button> */}
-                        <button type="submit" onClick={handleSubmit} className="btn btn-primary mb-3">Submit</button>
-                    </div>
+
+        <div className='container col-12 col-sm-8 p-0'>
+            <div className="card p-0">
+                <div className="card-header fs-1">Caba Innovatives Admission Form</div>
+                <div className="card-subtitle m-4 fs-2 fw-light">Student Admission Form</div>
+                <div className="card-body">
+                    <PersonalDetails formik={formik} setPhotoImage={setPhotoImage} setAdhaarImage={setAdhaarImage} setTenthCertificateImage={setTenthCertificateImage} setTwelthCertificateImage={setTwelthCertificateImage} setGraduationImage={setGraduationImage} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} countries={countries} />
+                    <ParentDetails formik={formik} countries={countries} setGuardianAdhaarImage={setGuardianAdhaarImage} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} />
+                    <CourseDetails formik={formik} />
+                    <FeeDetails setSignature={setSignature} formik={formik} reloadcaptcha={reloadcaptcha} captchaText={captchaText} setCaptchaText={setCaptchaText} />
+                    {/* <button type="submit" onClick={handleSubmit}>Submit</button> */}
+                    <button type="submit" onClick={handleSubmit} className="btn btn-primary mb-3">Submit</button>
                 </div>
-            </div>     
+            </div>
+        </div>
     )
 }
 

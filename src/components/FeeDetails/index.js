@@ -129,8 +129,8 @@ const FeeDetails = (props) => {
                     </div>
                 </div>
                 <div id="captchaContainer" className="row m-0 mb-4">
-                    <label htmlFor="photo" className="text-start col-12 mb-2 ps-1 col-md-3"><b>Verification Code</b></label>
-                    <div className="col-12 offset-md-2 col-md-7 p-2" style={{ display: 'flex', flexDirection: 'column', textAlign: 'start', border: '1px solid #dee2e6', backgroundColor: '#efebeb' }}>
+                    <label htmlFor="photo" className="text-start mb-2 ps-1 col-md-3"><b>Verification Code</b></label>
+                    <div className="offset-md-2 col-md-7 p-2" style={{ display: 'flex', flexDirection: 'column', textAlign: 'start', border: '1px solid #dee2e6', backgroundColor: '#efebeb' }}>
                         <p>Enter the text in the box below</p>
                         <div style={{ display: 'flex' }}>
                             <input style={{ borderRadius: 0, width: '75%' }} className="form-control" type="text" id="captchaInput" placeholder="Enter CAPTCHA" />
