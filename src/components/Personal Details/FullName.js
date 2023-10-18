@@ -4,7 +4,7 @@ function FullName(props) {
     const { formik } = props;
 
     return (
-        <div className="offset-sm-2 col-md-7 p-0">
+        <div className="offset-md-2 col-md-7 p-0">
             <div className="row gy-2 m-0">
                 <div className="col-md-2 p-1 text-start">
                     <select id="salutation" className="form-select p-1" aria-label='' value={formik.values.salutation} onChange={(e) => formik.setFieldValue('salutation', e.target.value)}>

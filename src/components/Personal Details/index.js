@@ -14,18 +14,18 @@ const PersonalDetails = (props) => {
             <div className="row personalDetails">
                 <div className="card-title text-start col-12 text-primary "><h3>Personal Details</h3></div><hr />
                 <div className="row photo m-0 mb-4">
-                    <label htmlFor="photo" className="text-start col-sm-3"><b>Your Photo</b></label>
+                    <label htmlFor="photo" className="text-start col-md-3"><b>Your Photo</b></label>
                     <ImageInputs idOfImage='photo' setPhotoImage={setPhotoImage} value="photo" info="Passport Size Photo in JPG format - JPG/PNG format less than 5 MB" />
                 </div>
                 <div className="row fullname m-0 mb-4">
-                    <label htmlFor="fullName" className="text-start col-sm-3 ps-1">
+                    <label htmlFor="fullName" className="text-start col-md-3 ps-1">
                         <b>Full Name <span className='text-danger'>*</span></b>
                     </label>
                     <FullName formik={formik} />
                 </div>
                 <div className="row email m-0 mb-4">
-                    <label htmlFor="photo" className="text-start col-sm-3 mb-2 ps-1"><b>Email</b></label>
-                    <div className="col-sm-7 offset-sm-2 p-0">
+                    <label htmlFor="photo" className="text-start col-md-3 mb-2 ps-1"><b>Email</b></label>
+                    <div className="col-md-7 offset-md-2 p-0">
                         <input type="text" className={`form-control ${formik.errors.email && formik.touched.email ? "border-danger" : ""}`} id="email" onBlur={formik.handleBlur('email')} value={formik.values.email} onChange={(e) => formik.setFieldValue('email', e.target.value)} />
                         {formik.errors.email && formik.touched.email ? (
                             <div className='text-danger text-start'>{formik.errors.email}</div>
@@ -33,8 +33,8 @@ const PersonalDetails = (props) => {
                     </div>
                 </div>
                 <div className="row phone m-0 mb-4">
-                    <label htmlFor="mobileNumber" className="text-start col-sm-3 mb-2 ps-1"><b>Mobile</b></label>
-                    <div className="col-sm-7 offset-sm-2 p-0">
+                    <label htmlFor="mobileNumber" className="text-start col-md-3 mb-2 ps-1"><b>Mobile</b></label>
+                    <div className="col-md-7 offset-md-2 p-0">
                         <div >
                             <div className="input-group">
                                 <button type="button" style={{ borderColor: '#dee2e6' }} className="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -59,8 +59,8 @@ const PersonalDetails = (props) => {
                     </div>
                 </div>
                 <div className="row phone m-0 mb-4">
-                    <label htmlFor="photo" className="text-start col-sm-3 mb-2 ps-1"><b>Any Other Phone</b></label>
-                    <div className="col-md-7 offset-sm-2 p-0">
+                    <label htmlFor="photo" className="text-start col-md-3 mb-2 ps-1"><b>Any Other Phone</b></label>
+                    <div className="col-md-7 offset-md-2 p-0">
                         <div >
                             <div className="input-group">
                                 <button type="button" style={{ borderColor: '#dee2e6' }} className="btn dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -86,30 +86,30 @@ const PersonalDetails = (props) => {
                 </div>
 
                 <div className="row adhar m-0  mb-4">
-                    <label htmlFor="photo" className="text-start col-sm-3 mb-2 ps-1"><b>Self Aadhar</b></label>
+                    <label htmlFor="photo" className="text-start col-md-3 mb-2 ps-1"><b>Self Aadhar</b></label>
                     <ImageInputs idOfImage='adhaar' setAdhaarImage={setAdhaarImage}
                         value="adhaar" info="Your Adhaar Copy Upload. JPG/PNG format less than 5 MB" />
                 </div>
                 <div className="row tenth m-0 mb-4">
-                    <label htmlFor="photo" className="text-start col-sm-3 mb-2 ps-1"><b>10th Certificate</b></label>
+                    <label htmlFor="photo" className="text-start col-md-3 mb-2 ps-1"><b>10th Certificate</b></label>
                     <ImageInputs idOfImage='tenthCertificate'
                         setTenthCertificateImage={setTenthCertificateImage}
                         value="tenthCertificate" info="Copy of your 10th Board Certificate. JPG/PNG format less than 10 MB" />
                 </div>
                 <div className="row twelth m-0  mb-4">
-                    <label htmlFor="photo" className="text-start col-sm-3 mb-2 ps-1"><b>12th Certificate</b></label>
+                    <label htmlFor="photo" className="text-start col-md-3 mb-2 ps-1"><b>12th Certificate</b></label>
                     <ImageInputs idOfImage='twelthCertificate'
                         setTwelthCertificateImage={setTwelthCertificateImage}
                         value="twelthCertificate" info="12th Certificate Copy Upload. JPG/PNG format less than 10 MB" />
                 </div>
                 <div className="row graduation m-0 mb-4">
-                    <label htmlFor="photo" className="text-start col-sm-3 mb-2 ps-1"><b>Graduation Certificate</b></label>
+                    <label htmlFor="photo" className="text-start col-md-3 mb-2 ps-1"><b>Graduation Certificate</b></label>
                     <ImageInputs idOfImage='graduation'
                         setGraduationImage={setGraduationImage} value="graduation" info="Copy of Graduation Degree (if finished). JPG/PNG format less than 10 MB" />
                 </div>
                 <div className="row address m-0  mb-4 g-3">
-                    <label htmlFor="inputAddress" className="text-start col-sm-3 ps-1"><b>Your Address</b></label>
-                    <div className='col-md-7 offset-sm-2 p-0'>
+                    <label htmlFor="inputAddress" className="text-start col-md-3 ps-1"><b>Your Address</b></label>
+                    <div className='col-md-7 offset-md-2 p-0'>
                         <Address formik={formik} />
                     </div>
                 </div>

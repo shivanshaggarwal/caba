@@ -124,7 +124,7 @@ const ImageInputs = (props) => {
     };
 
     return (
-        <div className="col-sm-7 offset-sm-2 photocontainer p-0">
+        <div className="col-md-7 offset-md-2 photocontainer p-0">
             <div className="col-12 bg-light rounded-2">
                 <div className='row m-0' style={{ border: divBorderHovered ? '1px dashed gray' : '' }} onMouseEnter={() => setDivBorderHovered(true)}
                     onMouseLeave={() => setDivBorderHovered(false)}>
