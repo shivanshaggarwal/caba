@@ -157,6 +157,7 @@ function AdmissionForm() {
             <div className="card p-0">
                 <div className="card-header fs-1">Caba Innovatives Admission Form</div>
                 <div className="card-subtitle m-4 fs-2 fw-light">Student Admission Form</div>
+                <img src='../components/Images/border.jpg' alt="" style={{ height: '200px', width: '400px' }} />
                 <div className="card-body">
                     <PersonalDetails formik={formik} setPhotoImage={setPhotoImage} setAdhaarImage={setAdhaarImage} setTenthCertificateImage={setTenthCertificateImage} setTwelthCertificateImage={setTwelthCertificateImage} setGraduationImage={setGraduationImage} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} countries={countries} />
                     <ParentDetails formik={formik} countries={countries} setGuardianAdhaarImage={setGuardianAdhaarImage} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} />
