@@ -9,7 +9,7 @@ import PersonalDetails from '../components/Personal Details'
 import ParentDetails from '../components/ParentDetails'
 import CourseDetails from '../components/CourseDetails'
 import FeeDetails from '../components/FeeDetails'
-import dividerImage from './divider-2461548_640.png';
+
 
 const validationSchema = Yup.object().shape({
     firstName: Yup.string().required("Enter the value for this field"),
@@ -153,8 +153,8 @@ function AdmissionForm() {
 
     return (
         
-            <div className='container col-12 col-md-6'>
-                <div className="card">
+            <div className='container col-12 col-md-6 p-0'>
+                <div className="card p-0">
                     <div className="card-header fs-1">Caba Innovatives Admission Form</div>
                     <div className="card-subtitle m-4 fs-2 fw-light">Student Admission Form</div>
                     <div className="card-body">
@@ -163,7 +163,7 @@ function AdmissionForm() {
                         <CourseDetails formik={formik} />
                         <FeeDetails setSignature={setSignature} formik={formik} reloadcaptcha={reloadcaptcha} captchaText={captchaText} setCaptchaText={setCaptchaText} />
                         {/* <button type="submit" onClick={handleSubmit}>Submit</button> */}
-                        <button type="submit" onClick={handleSubmit} class="btn btn-primary mb-3">Submit</button>
+                        <button type="submit" onClick={handleSubmit} className="btn btn-primary mb-3">Submit</button>
                     </div>
                 </div>
             </div>     

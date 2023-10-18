@@ -10,7 +10,7 @@ const CourseDetails = (props) => {
                     <h4>Course Details</h4>
                 </div>
                 <hr className='mb-0'/>
-                <div className="bg-secondary-subtle m-0 mb-2 p-2">
+                <div className="bg-secondary-subtle m-0 mt-1 mb-2 p-2">
                     <div className="row rollNumber m-0 mb-4">
                         <label htmlFor="rollNumber" className="text-start col-3"><b>Roll Number</b></label>
                         <div className="offset-2 col-4 p-0">

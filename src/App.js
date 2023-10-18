@@ -4,7 +4,7 @@ import './App.css';
 import AdmissionForm from './pages/AdmissionForm';
 function App() {
   return (
-    <div className="App">
+    <div className="App m-2 p-0">
       <AdmissionForm/>
     </div>
   );

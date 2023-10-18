@@ -70,7 +70,7 @@ const FeeDetails = (props) => {
                     <h4>Fee Details</h4>
                 </div>
                 <hr style={{border: "2px dashed", margin: "0px"}}/>
-                <div className="bg-secondary-subtle m-0 p-2">
+                <div className="bg-secondary-subtle m-0 mt-1 mb-1 p-2">
                     <div className="row m-0 mb-4">
                         <label htmlFor="" className="text-start col-3"><b>Total Course Fee</b></label>
                         <div className="offset-2 col-4 p-0">
