@@ -192,7 +192,7 @@ const ImageInputs = (props) => {
                     </div>
                 )}
             </div>
-            <p className='my-0 text-start fw-lighter fs-6 fst-italic'>{props.info}</p>
+            <p className='my-0 text-start' style={{fontSize: "0.8rem", fontWeight: "lighter"}}>{props.info}</p>
         </div >
     );
 };

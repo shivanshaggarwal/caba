@@ -80,7 +80,9 @@ function AdmissionForm() {
     const [reloadcaptcha, setReloadCaptcha] = useState('false');
     const [signature, setSignature] = useState(''); // State to store the signature value
     const [show, setShow] = useState(false);
-    const handleShow = () => setShow(true);
+    const handleShow = () =>{ 
+        handleSubmit();
+        setShow(true)};
     const handleClose = () => setShow(false);
     const formik = useFormik({
         enableReinitialize: true,
@@ -161,9 +163,9 @@ function AdmissionForm() {
 
     return (
 
-        <div className='container col-12 col-sm-6 p-0'>
+        <div className='container col-12 col-md-6 p-0'>
             <div className="card p-0">
-                <div className="card-header fs-1 border-bottom-0 bg-light">
+                <div className="card-header fs-1 border-bottom-0 bg-white">
                     Caba Innovatives Admission Form
                     <p className='fs-4 fw-lighter'>Student Admission Form</p>
                     <img src={borderImage} alt="" style={{ width: '100%' }} />
@@ -186,20 +188,111 @@ function AdmissionForm() {
                     <Modal.Title>Form Summary</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <Table striped bordered hover>
+                    <Table bordered hover>
                         <tbody>
                             <tr>
                                 <td>Your Photo</td>
-                                <td>{formik.firstName}</td>
-                                
+                                <td>{formik.firstName}</td>  
                             </tr>
                             <tr>
-                                <td>2</td>
-                                <td>Jacob</td>
+                                <td>Full Name</td>
+                                <td>Shivansh</td>
                             </tr>
                             <tr>
-                                <td>3</td>
-                                <td>@twitter</td>
+                                <td>Email</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Mobile</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Other Phone</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Self Aadhar</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>10th Certificate</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>12th Certificate</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Graduation Copy</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Guradian Name</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Relationship</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Guardian Address</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Guardian Phone</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Guardian Email</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Guardian Aadhaar</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Roll Number</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Date Of Joining</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Training Type</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Course Opted</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Days Opted</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Batch</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Total Course FeeINR</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Admission Fee</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Monthly Installment</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Fee Mode</td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td>Signature</td>
+                                <td></td>
                             </tr>
                         </tbody>
                     </Table>
