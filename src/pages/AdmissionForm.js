@@ -53,11 +53,11 @@ const validationSchema = Yup.object().shape({
         .min(10, 'You must enter at least 10 digits')
         .required('Enter a number for this field'),
     guardianEmail: Yup.string().email('Enter a valid email address. (eg: yourname@domain.com)').required('Enter a value for this field.'),
-    rollNumber: Yup.string().required('Enter a number for this field'),
-    dateOfJoining: Yup.string().required('Choose a date'),
-    courseFee: Yup.string().required('Enter a number for this field'),
-    admissionFee: Yup.string().required('Enter a number for this field'),
-    monthlyInstallment: Yup.string().required('Enter a number for this field'),
+    // rollNumber: Yup.string().required('Enter a number for this field'),
+    // dateOfJoining: Yup.string().required('Choose a date'),
+    // courseFee: Yup.string().required('Enter a number for this field'),
+    // admissionFee: Yup.string().required('Enter a number for this field'),
+    // monthlyInstallment: Yup.string().required('Enter a number for this field'),
 });
 
 
@@ -73,17 +73,24 @@ function AdmissionForm() {
     const [tenthCertificateImage, setTenthCertificateImage] = useState('')
     const [twelthCertificateImage, setTwelthCertificateImage] = useState('')
     const [graduationImage, setGraduationImage] = useState('');
+    const [isPhotoImage, setIsPhotoImage] = useState(null)
+    const [isadhaarImage, setIsAdhaarImage] = useState(null)
+    const [istenthCertificateImage, setIsTenthCertificateImage] = useState(null)
+    const [istwelthCertificateImage, setIsTwelthCertificateImage] = useState(null)
+    const [isgraduationImage, setIsGraduationImage] = useState(null);
     const [selectedCountry, setSelectedCountry] = useState(countries[0]);
     const [guardianAdhaarImage, setGuardianAdhaarImage] = useState('');
-
+    const [isguardianAdhaarImage, setIsGuardianAdhaarImage] = useState(null);
     const [captchaText, setCaptchaText] = useState('Please reload for the captcha');
     const [reloadcaptcha, setReloadCaptcha] = useState('false');
     const [signature, setSignature] = useState(''); // State to store the signature value
     const [show, setShow] = useState(false);
-    const handleShow = () =>{ 
-        handleSubmit();
-        setShow(true)};
+    const handleShow = () => {
+        // handleSubmit();
+        setShow(true)
+    };
     const handleClose = () => setShow(false);
+
     const formik = useFormik({
         enableReinitialize: true,
         initialValues: {
@@ -100,13 +107,13 @@ function AdmissionForm() {
             state: '',
             pincode: '',
             country: '',
-            photoImage: photoImage,
-            adhaarImage: adhaarImage,
-            tenthCertificateImage: tenthCertificateImage,
-            twelthCertificateImage: twelthCertificateImage,
-            graduationImage: graduationImage,
-            selectedCountry: selectedCountry.name,
-            guardianAdhaarImage: guardianAdhaarImage,
+            photoImage: '',
+            adhaarImage: '',
+            tenthCertificateImage: '',
+            twelthCertificateImage: '',
+            graduationImage: '',
+            selectedCountry: '',
+            guardianAdhaarImage: '',
             guardianSalutation: '',
             guardianFirstName: '',
             guardianMiddleName: '',
@@ -130,7 +137,7 @@ function AdmissionForm() {
             admissionFee: '',
             monthlyInstallment: '',
             feeMode: '',
-            signature: signature,
+            signature: '',
             captcha: '',
         },
         validationSchema,
@@ -146,6 +153,14 @@ function AdmissionForm() {
         const captchaText = document.getElementById('captchaText').textContent;
         if (userInput === captchaText) {
             console.log('userInput', userInput)
+            values.photoImage = photoImage;
+            values.adhaarImage = adhaarImage;
+            values.tenthCertificateImage = tenthCertificateImage;
+            values.twelthCertificateImage = twelthCertificateImage;
+            values.graduationImage = graduationImage;
+            values.selectedCountry = selectedCountry.name;
+            values.guardianAdhaarImage = guardianAdhaarImage;
+            values.signature = signature;
             values.captcha = userInput;
             console.log(values);
         } else {
@@ -173,8 +188,8 @@ function AdmissionForm() {
                 {/* <div className="card-subtitle m-4 fs-2 fw-light">Student Admission Form</div> */}
                 {/* <img src='../components/Images/border.jpg' alt="" style={{ height: '200px', width: '300px' }} /> */}
                 <div className="card-body">
-                    <PersonalDetails formik={formik} setPhotoImage={setPhotoImage} setAdhaarImage={setAdhaarImage} setTenthCertificateImage={setTenthCertificateImage} setTwelthCertificateImage={setTwelthCertificateImage} setGraduationImage={setGraduationImage} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} countries={countries} />
-                    <ParentDetails formik={formik} countries={countries} setGuardianAdhaarImage={setGuardianAdhaarImage} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} />
+                    <PersonalDetails formik={formik} photoImage={photoImage} setPhotoImage={setPhotoImage} adhaarImage={adhaarImage} setAdhaarImage={setAdhaarImage} tenthCertificateImage={tenthCertificateImage} setTenthCertificateImage={setTenthCertificateImage} twelthCertificateImage={twelthCertificateImage} setTwelthCertificateImage={setTwelthCertificateImage} graduationImage={graduationImage} setGraduationImage={setGraduationImage} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} countries={countries} setIsPhotoImage={setIsPhotoImage} setIsAdhaarImage={setIsAdhaarImage} setIsTenthCertificateImage={setIsTenthCertificateImage} setIsTwelthCertificateImage={setIsTwelthCertificateImage} setIsGraduationImage={setIsGraduationImage} />
+                    <ParentDetails formik={formik} countries={countries} guardianAdhaarImage={guardianAdhaarImage} setGuardianAdhaarImage={setGuardianAdhaarImage} selectedCountry={selectedCountry} setSelectedCountry={setSelectedCountry} setIsGuardianAdhaarImage={setIsGuardianAdhaarImage} />
                     <CourseDetails formik={formik} />
                     <FeeDetails setSignature={setSignature} formik={formik} reloadcaptcha={reloadcaptcha} captchaText={captchaText} setCaptchaText={setCaptchaText} />
                     {/* <button type="submit" onClick={handleSubmit}>Submit</button> */}
@@ -184,7 +199,7 @@ function AdmissionForm() {
             </div>
 
             <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
+                <Modal.Header>
                     <Modal.Title>Form Summary</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -192,107 +207,107 @@ function AdmissionForm() {
                         <tbody>
                             <tr>
                                 <td>Your Photo</td>
-                                <td>{formik.firstName}</td>  
+                                <td>{isPhotoImage ? photoImage.name : photoImage.slice(0, 25)}</td>
                             </tr>
                             <tr>
                                 <td>Full Name</td>
-                                <td>Shivansh</td>
+                                <td>{values.salutation} {values.firstName} {values.middleName} {values.lastName}</td>
                             </tr>
                             <tr>
                                 <td>Email</td>
-                                <td></td>
+                                <td>{values.email}</td>
                             </tr>
                             <tr>
                                 <td>Mobile</td>
-                                <td></td>
+                                <td>{values.mobileNumber}</td>
                             </tr>
                             <tr>
                                 <td>Other Phone</td>
-                                <td></td>
+                                <td>{values.otherMobileNumber}</td>
                             </tr>
                             <tr>
                                 <td>Self Aadhar</td>
-                                <td></td>
+                                <td>{isadhaarImage ? adhaarImage.name : adhaarImage}</td>
                             </tr>
                             <tr>
                                 <td>10th Certificate</td>
-                                <td></td>
+                                <td>{istenthCertificateImage ? tenthCertificateImage.name : tenthCertificateImage.slice(0, 25)}</td>
                             </tr>
                             <tr>
                                 <td>12th Certificate</td>
-                                <td></td>
+                                <td>{istwelthCertificateImage ? twelthCertificateImage.name : twelthCertificateImage.slice(0, 25)}</td>
                             </tr>
                             <tr>
                                 <td>Graduation Copy</td>
-                                <td></td>
+                                <td>{isgraduationImage ? graduationImage.name : graduationImage.slice(0, 25)}</td>
                             </tr>
                             <tr>
                                 <td>Guradian Name</td>
-                                <td></td>
+                                <td>{values.guardianSalutation} {values.guardianFirstName} {values.guardianMiddleName.slice(0, 25)}  {values.guardianLastName}</td>
                             </tr>
                             <tr>
                                 <td>Relationship</td>
-                                <td></td>
+                                <td>{values.relationShip}</td>
                             </tr>
                             <tr>
                                 <td>Guardian Address</td>
-                                <td></td>
+                                <td>{values.guardianAddress}</td>
                             </tr>
                             <tr>
                                 <td>Guardian Phone</td>
-                                <td></td>
+                                <td>{values.guardianMobileNumber}</td>
                             </tr>
                             <tr>
                                 <td>Guardian Email</td>
-                                <td></td>
+                                <td>{values.guardianEmail}</td>
                             </tr>
                             <tr>
                                 <td>Guardian Aadhaar</td>
-                                <td></td>
+                                <td>{isguardianAdhaarImage ? guardianAdhaarImage.name : guardianAdhaarImage.slice(0, 25)}</td>
                             </tr>
                             <tr>
                                 <td>Roll Number</td>
-                                <td></td>
+                                <td>{values.rollNumber}</td>
                             </tr>
                             <tr>
                                 <td>Date Of Joining</td>
-                                <td></td>
+                                <td>{values.dateOfJoining}</td>
                             </tr>
                             <tr>
                                 <td>Training Type</td>
-                                <td></td>
+                                <td>{values.trainingType}</td>
                             </tr>
                             <tr>
                                 <td>Course Opted</td>
-                                <td></td>
+                                <td>{values.courseOpted}</td>
                             </tr>
                             <tr>
                                 <td>Days Opted</td>
-                                <td></td>
+                                <td>{values.daysOpted}</td>
                             </tr>
                             <tr>
                                 <td>Batch</td>
-                                <td></td>
+                                <td>{values.batch}</td>
                             </tr>
                             <tr>
-                                <td>Total Course FeeINR</td>
-                                <td></td>
+                                <td>Total Course Fee (INR)</td>
+                                <td>{values.courseFee}</td>
                             </tr>
                             <tr>
                                 <td>Admission Fee</td>
-                                <td></td>
+                                <td>{values.admissionFee}</td>
                             </tr>
                             <tr>
                                 <td>Monthly Installment</td>
-                                <td></td>
+                                <td>{values.monthlyInstallment}</td>
                             </tr>
                             <tr>
                                 <td>Fee Mode</td>
-                                <td></td>
+                                <td>{values.feeMode}</td>
                             </tr>
                             <tr>
                                 <td>Signature</td>
-                                <td></td>
+                                <td>{signature.slice(0, 25)}...</td>
                             </tr>
                         </tbody>
                     </Table>

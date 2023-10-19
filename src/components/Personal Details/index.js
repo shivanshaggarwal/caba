@@ -4,7 +4,7 @@ import ImageInputs from '../ImageInputs';
 import Address from './Address';
 
 const PersonalDetails = (props) => {
-    const { formik, setPhotoImage, setAdhaarImage, setTenthCertificateImage, setTwelthCertificateImage, setGraduationImage, selectedCountry, setSelectedCountry, countries } = props;
+    const { formik, photoImage, setPhotoImage, adhaarImage, setAdhaarImage, tenthCertificateImage, setTenthCertificateImage, twelthCertificateImage, setTwelthCertificateImage, graduationImage, setGraduationImage, selectedCountry, setSelectedCountry, countries, setIsPhotoImage, setIsAdhaarImage, setIsTenthCertificateImage, setIsTwelthCertificateImage, setIsGraduationImage } = props;
     const handleCountrySelect = (country) => {
         setSelectedCountry(country);
     };
@@ -15,7 +15,7 @@ const PersonalDetails = (props) => {
                 <div className="card-title text-start col-12 text-primary "><h3>Personal Details</h3></div><hr />
                 <div className="row photo m-0 mb-4">
                     <label htmlFor="photo" className="text-start col-md-3"><b>Your Photo</b></label>
-                    <ImageInputs idOfImage='photo' setPhotoImage={setPhotoImage} value="photo" info="Passport Size Photo in JPG format - JPG/PNG format less than 5 MB" />
+                    <ImageInputs setIsPhotoImage={setIsPhotoImage} photoImage={photoImage} idOfImage='photo' setPhotoImage={setPhotoImage} value="photo" info="Passport Size Photo in JPG format - JPG/PNG format less than 5 MB" />
                 </div>
                 <div className="row fullname m-0 mb-4">
                     <label htmlFor="fullName" className="text-start col-md-3 ps-1">
@@ -87,24 +87,24 @@ const PersonalDetails = (props) => {
 
                 <div className="row adhar m-0  mb-4">
                     <label htmlFor="photo" className="text-start col-md-3 mb-2 ps-1"><b>Self Aadhar</b></label>
-                    <ImageInputs idOfImage='adhaar' setAdhaarImage={setAdhaarImage}
+                    <ImageInputs setIsAdhaarImage={setIsAdhaarImage} adhaarImage={adhaarImage} idOfImage='adhaar' setAdhaarImage={setAdhaarImage}
                         value="adhaar" info="Your Adhaar Copy Upload. JPG/PNG format less than 5 MB" />
                 </div>
                 <div className="row tenth m-0 mb-4">
                     <label htmlFor="photo" className="text-start col-md-3 mb-2 ps-1"><b>10th Certificate</b></label>
-                    <ImageInputs idOfImage='tenthCertificate'
+                    <ImageInputs setIsTenthCertificateImage={setIsTenthCertificateImage} tenthCertificateImage={tenthCertificateImage} idOfImage='tenthCertificate'
                         setTenthCertificateImage={setTenthCertificateImage}
                         value="tenthCertificate" info="Copy of your 10th Board Certificate. JPG/PNG format less than 10 MB" />
                 </div>
                 <div className="row twelth m-0  mb-4">
                     <label htmlFor="photo" className="text-start col-md-3 mb-2 ps-1"><b>12th Certificate</b></label>
-                    <ImageInputs idOfImage='twelthCertificate'
+                    <ImageInputs setIsTwelthCertificateImage={setIsTwelthCertificateImage} twelthCertificateImage={twelthCertificateImage} idOfImage='twelthCertificate'
                         setTwelthCertificateImage={setTwelthCertificateImage}
                         value="twelthCertificate" info="12th Certificate Copy Upload. JPG/PNG format less than 10 MB" />
                 </div>
                 <div className="row graduation m-0 mb-4">
                     <label htmlFor="photo" className="text-start col-md-3 mb-2 ps-1"><b>Graduation Certificate</b></label>
-                    <ImageInputs idOfImage='graduation'
+                    <ImageInputs setIsGraduationImage={setIsGraduationImage} graduationImage={graduationImage} idOfImage='graduation'
                         setGraduationImage={setGraduationImage} value="graduation" info="Copy of Graduation Degree (if finished). JPG/PNG format less than 10 MB" />
                 </div>
                 <div className="row address m-0  mb-4 g-3">
