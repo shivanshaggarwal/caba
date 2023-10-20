@@ -111,7 +111,7 @@ const ImageInputs = (props) => {
                 setIsGraduationImage(false);
             } else if (value === "guardianAdhaar") {
                 setGuardianAdhaarImage(imageDataURL);
-                setIsGraduationImage(false);
+                setIsGuardianAdhaarImage(false);
             } else {
                 handleClose();
             }
