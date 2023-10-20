@@ -4,7 +4,7 @@ import ImageInputs from '../ImageInputs'
 import FullName from './FullName';
 
 const ParentDetails = (props) => {
-    const { formik, guardianAdhaarImage, setGuardianAdhaarImage, countries, selectedCountry, setSelectedCountry, setIsGraduationImage } = props;
+    const { formik, guardianAdhaarImage, setGuardianAdhaarImage,  setIsGuardianAdhaarImage, countries, selectedCountry, setSelectedCountry, setIsGraduationImage } = props;
     const handleCountrySelect = (country) => {
         setSelectedCountry(country);
     };
@@ -83,7 +83,7 @@ const ParentDetails = (props) => {
 
                 <div className="row guardianAdhar mx-0  mb-4">
                     <label htmlFor="photo" className="text-start col-md-3 mb-2 ps-1"><b>{formik.values.relationShip ? `${formik.values.relationShip}'s` : "Guardian's"} Aadhar</b></label>
-                    <ImageInputs setIsGraduationImage={setIsGraduationImage} guardianAdhaarImage={guardianAdhaarImage} idOfImage='guardianAdhaar' setGuardianAdhaarImage={setGuardianAdhaarImage} value="guardianAdhaar" info={`Copy of ${formik.values.relationShip ? `${formik.values.relationShip}'s` : "Guardian's"} Aadhaar Copy. Should be JPG format less than 5 MB`} />
+                    <ImageInputs setIsGraduationImage={setIsGraduationImage} guardianAdhaarImage={guardianAdhaarImage} setIsGuardianAdhaarImage={setIsGuardianAdhaarImage} idOfImage='guardianAdhaar' setGuardianAdhaarImage={setGuardianAdhaarImage} value="guardianAdhaar" info={`Copy of ${formik.values.relationShip ? `${formik.values.relationShip}'s` : "Guardian's"} Aadhaar Copy. Should be JPG format less than 5 MB`} />
                 </div>
             </div>
         </>
